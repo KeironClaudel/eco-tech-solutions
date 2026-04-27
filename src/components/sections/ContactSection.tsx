@@ -6,7 +6,7 @@ function ContactSection() {
   return (
     <section id="contact" className="px-6 py-24 text-slate-50">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-        <div>
+        <div className="animate-fade-up">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
             Contact
           </p>
@@ -16,8 +16,8 @@ function ContactSection() {
           </h2>
 
           <p className="mt-5 text-lg leading-8 text-slate-300">
-            Tell us what you need and we’ll help you with electrical work,
-            air conditioning, security systems or network infrastructure.
+            Tell us what you need and we’ll help you with electrical work, air
+            conditioning, security systems or network infrastructure.
           </p>
 
           <div className="mt-8 space-y-4">
@@ -27,7 +27,7 @@ function ContactSection() {
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-4 transition hover:border-cyan-300/40"
+              className="flex items-center gap-4 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/40"
             >
               <MessageCircle className="text-cyan-300" size={24} />
               <div>
@@ -62,7 +62,7 @@ function ContactSection() {
           </div>
         </div>
 
-        <form className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 md:p-8">
+        <form className="animate-fade-up animation-delay-200 rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-xl shadow-black/20 md:p-8">
           <div className="grid gap-5">
             <div>
               <label htmlFor="name" className="mb-2 block text-sm text-slate-300">
@@ -100,6 +100,7 @@ function ContactSection() {
                 id="message"
                 name="message"
                 rows={5}
+                required
                 placeholder="Tell us what you need..."
                 className="w-full resize-none rounded-xl border border-white/10 bg-[#0b0f17] px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/50"
               />
@@ -110,9 +111,7 @@ function ContactSection() {
               onClick={() => {
                 const form = document.querySelector("form");
 
-                if (!form) {
-                  return;
-                }
+                if (!form) return;
 
                 const formData = new FormData(form);
 
@@ -126,20 +125,19 @@ function ContactSection() {
                 }
 
                 const whatsappMessage = `
-                Hola, quisiera solicitar una cotización.
+                  Hola, quisiera solicitar una cotización.
 
-                Nombre: ${name}
-                Teléfono: ${phone}
-                Mensaje: ${message}
+                  Nombre: ${name}
+                  Teléfono: ${phone}
+                  Mensaje: ${message}
                 `.trim();
 
                 window.open(buildWhatsAppUrl(whatsappMessage), "_blank");
               }}
-              className="rounded-xl bg-gradient-to-r from-cyan-400 to-purple-500 px-6 py-3 font-semibold text-black transition hover:opacity-90"
+              className="rounded-xl bg-gradient-to-r from-cyan-400 to-purple-500 px-6 py-3 font-semibold text-black shadow-lg shadow-cyan-950/40 transition hover:scale-[1.02] hover:opacity-90"
             >
               Send by WhatsApp
             </button>
-
           </div>
         </form>
       </div>

@@ -5,7 +5,7 @@ function ProjectsSection() {
   return (
     <section id="projects" className="px-6 py-24 text-slate-50">
       <div className="mx-auto max-w-7xl">
-        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <div className="flex animate-fade-up flex-col justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-3xl">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
               Projects
@@ -35,7 +35,7 @@ function ProjectsSection() {
           {projects.map((project) => (
             <article
               key={project.title}
-              className="group overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-white/[0.05] hover:shadow-cyan-950/30"
+              className="group animate-fade-up overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-white/[0.05] hover:shadow-cyan-950/30"
             >
               <div className="flex aspect-[4/3] items-center justify-center border-b border-white/10 bg-gradient-to-br from-cyan-300/10 via-[#0b0f17] to-purple-500/10">
                 {project.imageUrl ? (

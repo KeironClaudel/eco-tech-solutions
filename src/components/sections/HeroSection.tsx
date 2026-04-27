@@ -1,32 +1,20 @@
-import { ShieldCheck, Zap, Network, Snowflake } from "lucide-react";
+import { Network, ShieldCheck, Snowflake, Zap } from "lucide-react";
+import logo from "../../assets/images/ecotech-logo.png";
 import { brand } from "../../data/brand";
 import { buildWhatsAppUrl } from "../../lib/whatsapp";
-import logo from "../../assets/images/ecotech-logo.png";
 
 const highlights = [
-  {
-    label: "Electrical systems",
-    icon: Zap,
-  },
-  {
-    label: "Security solutions",
-    icon: ShieldCheck,
-  },
-  {
-    label: "Network infrastructure",
-    icon: Network,
-  },
-  {
-    label: "Air conditioning",
-    icon: Snowflake,
-  },
+  { label: "Electrical systems", icon: Zap },
+  { label: "Security solutions", icon: ShieldCheck },
+  { label: "Network infrastructure", icon: Network },
+  { label: "Air conditioning", icon: Snowflake },
 ];
 
 function HeroSection() {
   return (
     <section className="relative overflow-hidden px-6 py-24 text-slate-50">
       <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-        <div>
+        <div className="animate-fade-up">
           <p className="mb-5 inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm font-medium text-cyan-200">
             Professional technical solutions in Costa Rica
           </p>
@@ -49,7 +37,7 @@ function HeroSection() {
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-xl bg-gradient-to-r from-cyan-400 to-purple-500 px-6 py-3 text-center font-semibold text-black transition hover:opacity-90"
+              className="rounded-xl bg-gradient-to-r from-cyan-400 to-purple-500 px-6 py-3 text-center font-semibold text-black shadow-lg shadow-cyan-950/40 transition hover:scale-[1.02] hover:opacity-90"
             >
               Request a quote
             </a>
@@ -63,7 +51,7 @@ function HeroSection() {
           </div>
         </div>
 
-        <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-2xl shadow-cyan-950/30">
+        <div className="animate-fade-up animation-delay-200 rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-2xl shadow-cyan-950/30">
           <div className="mb-6 flex justify-center">
             <img
               src={logo}
@@ -79,7 +67,7 @@ function HeroSection() {
               return (
                 <div
                   key={item.label}
-                  className="rounded-2xl border border-white/10 bg-[#0b0f17] p-5"
+                  className="rounded-2xl border border-white/10 bg-[#0b0f17] p-5 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30"
                 >
                   <div className="mb-4 flex size-11 items-center justify-center rounded-xl bg-cyan-300/10 text-cyan-200">
                     <Icon size={22} />
