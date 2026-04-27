@@ -35,9 +35,9 @@ function AboutSection() {
             return (
               <div
                 key={feature.title}
-                className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-cyan-300/30 hover:bg-white/[0.05]"
+                className="group rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-white/[0.05] hover:shadow-cyan-950/30"
               >
-                <div className="mb-4 flex size-11 items-center justify-center rounded-xl bg-cyan-300/10 text-cyan-200">
+                <div className="mb-4 flex size-11 items-center justify-center rounded-xl bg-cyan-300/10 text-cyan-200 transition group-hover:bg-cyan-300/20">
                   <Icon size={22} />
                 </div>
 

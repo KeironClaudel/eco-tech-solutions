@@ -1,3 +1,4 @@
+import { CheckCircle2 } from "lucide-react";
 import { serviceCategories, serviceHighlights } from "../../data/services";
 
 function ServicesSection() {
@@ -10,8 +11,7 @@ function ServicesSection() {
           </p>
 
           <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
-            Integrated solutions from electrical work to technology
-            infrastructure.
+            Integrated solutions from electrical work to technology infrastructure.
           </h2>
 
           <p className="mt-5 text-lg leading-8 text-slate-300">
@@ -21,6 +21,7 @@ function ServicesSection() {
           </p>
         </div>
 
+        {/* Highlights */}
         <div className="mt-10 flex flex-wrap gap-3">
           {serviceHighlights.map((item) => {
             const Icon = item.icon;
@@ -28,7 +29,7 @@ function ServicesSection() {
             return (
               <span
                 key={item.label}
-                className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100"
+                className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100 transition hover:border-cyan-300/40"
               >
                 <Icon size={16} />
                 {item.label}
@@ -37,6 +38,7 @@ function ServicesSection() {
           })}
         </div>
 
+        {/* Categories */}
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           {serviceCategories.map((category) => {
             const Icon = category.icon;
@@ -44,9 +46,9 @@ function ServicesSection() {
             return (
               <article
                 key={category.title}
-                className="rounded-3xl border border-white/10 bg-white/[0.03] p-7 transition hover:border-cyan-300/30 hover:bg-white/[0.05]"
+                className="group rounded-3xl border border-white/10 bg-white/[0.03] p-7 shadow-xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-white/[0.05] hover:shadow-cyan-950/30"
               >
-                <div className="mb-6 flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-300/20 to-purple-500/20 text-cyan-200">
+                <div className="mb-6 flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-300/20 to-purple-500/20 text-cyan-200 transition group-hover:scale-105">
                   <Icon size={24} />
                 </div>
 
@@ -54,7 +56,25 @@ function ServicesSection() {
                   {category.title}
                 </h3>
 
-                <p className="mt-3 text-slate-300">{category.description}</p>
+                <p className="mt-3 text-slate-300">
+                  {category.description}
+                </p>
+
+                {/* Lista de servicios */}
+                <ul className="mt-6 space-y-3">
+                  {category.services.map((service) => (
+                    <li
+                      key={service}
+                      className="flex items-start gap-3 text-sm text-slate-300"
+                    >
+                      <CheckCircle2
+                        size={16}
+                        className="mt-1 text-cyan-300"
+                      />
+                      {service}
+                    </li>
+                  ))}
+                </ul>
               </article>
             );
           })}

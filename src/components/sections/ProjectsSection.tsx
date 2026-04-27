@@ -24,7 +24,7 @@ function ProjectsSection() {
 
           <a
             href="#contact"
-            className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-5 py-3 font-semibold text-white transition hover:border-cyan-300/50 hover:bg-white/5"
+            className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-5 py-3 font-semibold text-white transition duration-300 hover:border-cyan-300/50 hover:bg-white/5"
           >
             Request similar work
             <ArrowUpRight size={18} />
@@ -35,17 +35,17 @@ function ProjectsSection() {
           {projects.map((project) => (
             <article
               key={project.title}
-              className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] transition hover:border-cyan-300/30 hover:bg-white/[0.05]"
+              className="group overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-white/[0.05] hover:shadow-cyan-950/30"
             >
               <div className="flex aspect-[4/3] items-center justify-center border-b border-white/10 bg-gradient-to-br from-cyan-300/10 via-[#0b0f17] to-purple-500/10">
                 {project.imageUrl ? (
                   <img
                     src={project.imageUrl}
                     alt={project.title}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                   />
                 ) : (
-                  <div className="flex flex-col items-center gap-3 text-slate-400">
+                  <div className="flex flex-col items-center gap-3 text-slate-400 transition duration-300 group-hover:text-cyan-200">
                     <ImageIcon size={34} />
                     <span className="text-sm">Project photo</span>
                   </div>
