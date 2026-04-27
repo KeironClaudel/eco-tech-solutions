@@ -91,26 +91,6 @@ function ContactSection() {
             </div>
 
             <div>
-              <label htmlFor="service" className="mb-2 block text-sm text-slate-300">
-                Service needed
-              </label>
-              <select
-                id="service"
-                name="service"
-                defaultValue=""
-                className="w-full rounded-xl border border-white/10 bg-[#0b0f17] px-4 py-3 text-white outline-none transition focus:border-cyan-300/50"
-              >
-                <option value="" disabled>
-                  Select a service
-                </option>
-                <option value="Electrical services">Electrical services</option>
-                <option value="Air conditioning">Air conditioning</option>
-                <option value="Security systems">Security systems</option>
-                <option value="Network infrastructure">Network infrastructure</option>
-              </select>
-            </div>
-
-            <div>
               <label htmlFor="message" className="mb-2 block text-sm text-slate-300">
                 Message
               </label>
@@ -131,16 +111,14 @@ function ContactSection() {
 
                 const name = String(formData.get("name") ?? "");
                 const phone = String(formData.get("phone") ?? "");
-                const service = String(formData.get("service") ?? "");
                 const message = String(formData.get("message") ?? "");
 
                 const whatsappMessage = `
-Hola, quisiera solicitar una cotización.
+                    Hola, quisiera solicitar una cotización.
 
-Nombre: ${name}
-Teléfono: ${phone}
-Servicio: ${service}
-Mensaje: ${message}
+                    Nombre: ${name}
+                    Teléfono: ${phone}
+                    Mensaje: ${message}
                 `.trim();
 
                 window.open(buildWhatsAppUrl(whatsappMessage), "_blank");
