@@ -1,4 +1,3 @@
-import { CheckCircle2 } from "lucide-react";
 import { serviceCategories, serviceHighlights } from "../../data/services";
 
 function ServicesSection() {
@@ -56,21 +55,6 @@ function ServicesSection() {
                 </h3>
 
                 <p className="mt-3 text-slate-300">{category.description}</p>
-
-                <ul className="mt-6 space-y-3">
-                  {category.services.map((service) => (
-                    <li
-                      key={service}
-                      className="flex gap-3 text-sm leading-6 text-slate-300"
-                    >
-                      <CheckCircle2
-                        className="mt-1 shrink-0 text-cyan-300"
-                        size={17}
-                      />
-                      <span>{service}</span>
-                    </li>
-                  ))}
-                </ul>
               </article>
             );
           })}
