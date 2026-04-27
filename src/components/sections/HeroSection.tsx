@@ -1,6 +1,7 @@
 import { ShieldCheck, Zap, Network, Snowflake } from "lucide-react";
 import { brand } from "../../data/brand";
 import { buildWhatsAppUrl } from "../../lib/whatsapp";
+import logo from "../../assets/images/ecotech-logo.png";
 
 const highlights = [
   {
@@ -63,6 +64,14 @@ function HeroSection() {
         </div>
 
         <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-2xl shadow-cyan-950/30">
+          <div className="mb-6 flex justify-center">
+            <img
+              src={logo}
+              alt={`${brand.name} logo`}
+              className="h-28 w-auto drop-shadow-[0_0_28px_rgba(85,243,255,0.25)]"
+            />
+          </div>
+
           <div className="grid gap-4 sm:grid-cols-2">
             {highlights.map((item) => {
               const Icon = item.icon;

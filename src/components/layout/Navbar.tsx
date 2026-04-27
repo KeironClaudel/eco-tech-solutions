@@ -3,6 +3,7 @@ import { useState } from "react";
 import { brand } from "../../data/brand";
 import { navigationItems } from "../../data/navigation";
 import { buildWhatsAppUrl } from "../../lib/whatsapp";
+import logo from "../../assets/images/ecotech-logo.png";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,7 +16,12 @@ function Navbar() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#05070a]/80 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href="#" className="flex items-center gap-3" onClick={closeMenu}>
-          <span className="text-lg font-bold tracking-wide text-white">
+          <img
+            src={logo}
+            alt={`${brand.name} logo`}
+            className="h-10 w-auto"
+          />
+          <span className="hidden text-lg font-bold tracking-wide text-white sm:inline">
             {brand.name}
           </span>
         </a>
