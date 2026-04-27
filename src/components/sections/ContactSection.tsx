@@ -72,6 +72,7 @@ function ContactSection() {
                 id="name"
                 name="name"
                 type="text"
+                required
                 placeholder="Your name"
                 className="w-full rounded-xl border border-white/10 bg-[#0b0f17] px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/50"
               />
@@ -85,6 +86,7 @@ function ContactSection() {
                 id="phone"
                 name="phone"
                 type="tel"
+                required
                 placeholder="+506 0000-0000"
                 className="w-full rounded-xl border border-white/10 bg-[#0b0f17] px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/50"
               />
@@ -107,18 +109,28 @@ function ContactSection() {
               type="button"
               onClick={() => {
                 const form = document.querySelector("form");
-                const formData = new FormData(form!);
 
-                const name = String(formData.get("name") ?? "");
-                const phone = String(formData.get("phone") ?? "");
-                const message = String(formData.get("message") ?? "");
+                if (!form) {
+                  return;
+                }
+
+                const formData = new FormData(form);
+
+                const name = String(formData.get("name") ?? "").trim();
+                const phone = String(formData.get("phone") ?? "").trim();
+                const message = String(formData.get("message") ?? "").trim();
+
+                if (!name || !phone || !message) {
+                  alert("Please complete all fields before sending the request.");
+                  return;
+                }
 
                 const whatsappMessage = `
-                    Hola, quisiera solicitar una cotización.
+                Hola, quisiera solicitar una cotización.
 
-                    Nombre: ${name}
-                    Teléfono: ${phone}
-                    Mensaje: ${message}
+                Nombre: ${name}
+                Teléfono: ${phone}
+                Mensaje: ${message}
                 `.trim();
 
                 window.open(buildWhatsAppUrl(whatsappMessage), "_blank");
@@ -127,6 +139,7 @@ function ContactSection() {
             >
               Send by WhatsApp
             </button>
+
           </div>
         </form>
       </div>
