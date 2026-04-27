@@ -1,0 +1,83 @@
+import { CheckCircle2 } from "lucide-react";
+import { serviceCategories, serviceHighlights } from "../../data/services";
+
+function ServicesSection() {
+  return (
+    <section id="services" className="px-6 py-24 text-slate-50">
+      <div className="mx-auto max-w-7xl">
+        <div className="max-w-3xl">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
+            Services
+          </p>
+
+          <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
+            Integrated solutions from electrical work to technology
+            infrastructure.
+          </h2>
+
+          <p className="mt-5 text-lg leading-8 text-slate-300">
+            EcotechCR provides technical services for residential, commercial
+            and business environments, combining electrical expertise, security
+            systems, air conditioning and network infrastructure.
+          </p>
+        </div>
+
+        <div className="mt-10 flex flex-wrap gap-3">
+          {serviceHighlights.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <span
+                key={item.label}
+                className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100"
+              >
+                <Icon size={16} />
+                {item.label}
+              </span>
+            );
+          })}
+        </div>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
+          {serviceCategories.map((category) => {
+            const Icon = category.icon;
+
+            return (
+              <article
+                key={category.title}
+                className="rounded-3xl border border-white/10 bg-white/[0.03] p-7 transition hover:border-cyan-300/30 hover:bg-white/[0.05]"
+              >
+                <div className="mb-6 flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-300/20 to-purple-500/20 text-cyan-200">
+                  <Icon size={24} />
+                </div>
+
+                <h3 className="text-2xl font-bold text-white">
+                  {category.title}
+                </h3>
+
+                <p className="mt-3 text-slate-300">{category.description}</p>
+
+                <ul className="mt-6 space-y-3">
+                  {category.services.map((service) => (
+                    <li
+                      key={service}
+                      className="flex gap-3 text-sm leading-6 text-slate-300"
+                    >
+                      <CheckCircle2
+                        className="mt-1 shrink-0 text-cyan-300"
+                        size={17}
+                      />
+                      <span>{service}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default ServicesSection;
