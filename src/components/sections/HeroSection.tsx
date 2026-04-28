@@ -70,11 +70,17 @@ function HeroSection() {
                   key={item.label}
                   className="rounded-2xl border border-white/10 bg-[#0b0f17] p-5 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30"
                 >
-                  <div className="mb-4 flex size-11 items-center justify-center rounded-xl bg-cyan-300/10 text-cyan-200">
-                    <Icon size={22} />
-                  </div>
+                  <div className="flex items-center gap-4">
+                    {/* Icono */}
+                    <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-cyan-300/10 text-cyan-200">
+                      <Icon size={22} />
+                    </div>
 
-                  <h3 className="font-semibold text-white">{item.label}</h3>
+                    {/* Texto */}
+                    <h3 className="text-sm font-semibold text-white">
+                      {item.label}
+                    </h3>
+                  </div>
                 </div>
               );
             })}

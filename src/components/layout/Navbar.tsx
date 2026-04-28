@@ -15,15 +15,25 @@ function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#05070a]/80 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#" className="flex items-center gap-3" onClick={closeMenu}>
+        <a
+          href="#"
+          className="flex min-w-0 items-center gap-3"
+          onClick={closeMenu}
+        >
           <img
             src={logo}
             alt={`${brand.name} logo`}
-            className="h-10 w-auto"
+            className="h-10 w-auto shrink-0"
           />
-          <span className="hidden text-lg font-bold tracking-wide text-white sm:inline">
-            {brand.name}
-          </span>
+
+          <div className="leading-none">
+            <span className="block text-base font-bold tracking-wide text-white sm:text-lg">
+              {brand.name}
+            </span>
+            <span className="mt-1 block text-[10px] uppercase tracking-[0.22em] text-cyan-300 sm:text-xs">
+              Technology Solutions
+            </span>
+          </div>
         </a>
 
         <nav className="hidden gap-8 md:flex">
