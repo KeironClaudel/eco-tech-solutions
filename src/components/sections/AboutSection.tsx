@@ -6,22 +6,24 @@ function AboutSection() {
       <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-2">
         <div className="animate-fade-up">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
-            About
+            Nosotros
           </p>
 
           <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
-            Reliable technical solutions backed by experience and commitment.
+            Soluciones técnicas confiables respaldadas por experiencia y compromiso.
           </h2>
 
           <p className="mt-6 text-lg leading-8 text-slate-300">
-            EcotechCR delivers electrical, security, air conditioning and
-            infrastructure services for homes, businesses and companies. Our
-            goal is to provide safe, efficient and long-lasting solutions.
+            EcotechCR ofrece servicios eléctricos, de seguridad, aire
+            acondicionado e infraestructura para hogares, negocios y empresas.
+            Nuestro objetivo es brindar soluciones seguras, eficientes y
+            duraderas.
           </p>
 
           <p className="mt-4 text-slate-400">
-            We combine technical knowledge, quality materials and professional
-            execution to ensure every project meets high standards.
+            Combinamos conocimiento técnico, materiales de calidad y ejecución
+            profesional para asegurar que cada proyecto cumpla altos
+            estándares.
           </p>
         </div>
 

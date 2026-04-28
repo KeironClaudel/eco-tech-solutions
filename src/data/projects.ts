@@ -1,26 +1,26 @@
 export const projects = [
   {
-    title: "Commercial electrical installation",
-    category: "Electrical Services",
+    title: "Instalación eléctrica comercial",
+    category: "Servicios eléctricos",
     location: "Costa Rica",
     description:
-      "Electrical installation and technical review for a commercial environment.",
+      "Instalación eléctrica y revisión técnica para un entorno comercial.",
     imageUrl: "",
   },
   {
-    title: "CCTV camera system",
-    category: "Security Systems",
+    title: "Sistema de cámaras CCTV",
+    category: "Sistemas de seguridad",
     location: "Costa Rica",
     description:
-      "Security camera installation for monitoring and access control support.",
+      "Instalación de cámaras de seguridad para monitoreo y apoyo al control de acceso.",
     imageUrl: "",
   },
   {
-    title: "Network infrastructure setup",
-    category: "Network Infrastructure",
+    title: "Implementación de infraestructura de red",
+    category: "Infraestructura de redes",
     location: "Costa Rica",
     description:
-      "Structured cabling, network points and infrastructure organization.",
+      "Cableado estructurado, puntos de red y organización de infraestructura.",
     imageUrl: "",
   },
 ];

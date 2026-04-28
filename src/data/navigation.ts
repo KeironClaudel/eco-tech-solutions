@@ -1,18 +1,18 @@
 export const navigationItems = [
   {
-    label: "Services",
+    label: "Servicios",
     href: "#services",
   },
   {
-    label: "Projects",
+    label: "Proyectos",
     href: "#projects",
   },
   {
-    label: "About",
+    label: "Nosotros",
     href: "#about",
   },
   {
-    label: "Contact",
+    label: "Contacto",
     href: "#contact",
   },
 ];

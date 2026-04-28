@@ -7,18 +7,19 @@ function ServicesSection() {
       <div className="mx-auto max-w-7xl">
         <div className="max-w-3xl animate-fade-up">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
-            Services
+            Servicios
           </p>
 
           <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
-            Integrated solutions from electrical work to technology
-            infrastructure.
+            Soluciones integrales desde trabajos eléctricos hasta
+            infraestructura tecnológica.
           </h2>
 
           <p className="mt-5 text-lg leading-8 text-slate-300">
-            EcotechCR provides technical services for residential, commercial
-            and business environments, combining electrical expertise, security
-            systems, air conditioning and network infrastructure.
+            EcotechCR brinda servicios técnicos para entornos residenciales,
+            comerciales y empresariales, combinando experiencia eléctrica,
+            sistemas de seguridad, aire acondicionado e infraestructura de
+            redes.
           </p>
         </div>
 

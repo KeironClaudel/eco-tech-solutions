@@ -46,12 +46,12 @@ function Navbar() {
           rel="noopener noreferrer"
           className="hidden rounded-lg bg-gradient-to-r from-cyan-400 to-purple-500 px-4 py-2 text-sm font-medium text-black transition hover:opacity-90 md:inline-flex"
         >
-          Contact
+          Contacto
         </a>
 
         <button
           type="button"
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={isMenuOpen}
           onClick={() => setIsMenuOpen((current) => !current)}
           className="inline-flex size-10 items-center justify-center rounded-xl border border-white/10 text-white transition hover:border-cyan-300/50 hover:bg-white/5 md:hidden"
@@ -83,7 +83,7 @@ function Navbar() {
               onClick={closeMenu}
               className="mt-2 rounded-xl bg-gradient-to-r from-cyan-400 to-purple-500 px-4 py-3 text-center font-semibold text-black transition hover:opacity-90"
             >
-              Contact
+              Contacto
             </a>
           </nav>
         </div>

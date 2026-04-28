@@ -2,27 +2,27 @@ import { ShieldCheck, Zap, Clock, Users } from "lucide-react";
 
 export const aboutFeatures = [
   {
-    title: "Professional and safe work",
+    title: "Trabajo profesional y seguro",
     description:
-      "We follow technical standards and safety practices in every installation and service.",
+      "Seguimos normas técnicas y prácticas de seguridad en cada instalación y servicio.",
     icon: ShieldCheck,
   },
   {
-    title: "Integrated solutions",
+    title: "Soluciones integrales",
     description:
-      "From electrical systems to security and networks, everything in one place.",
+      "Desde sistemas eléctricos hasta seguridad y redes, todo en un solo lugar.",
     icon: Zap,
   },
   {
-    title: "Fast response",
+    title: "Respuesta rápida",
     description:
-      "Quick attention and efficient execution for residential and commercial needs.",
+      "Atención ágil y ejecución eficiente para necesidades residenciales y comerciales.",
     icon: Clock,
   },
   {
-    title: "Customer-focused service",
+    title: "Atención centrada en el cliente",
     description:
-      "Personalized solutions based on each client’s requirements.",
+      "Soluciones personalizadas según los requerimientos de cada cliente.",
     icon: Users,
   },
 ];

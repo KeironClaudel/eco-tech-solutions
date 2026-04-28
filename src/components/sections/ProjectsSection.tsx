@@ -8,17 +8,18 @@ function ProjectsSection() {
         <div className="flex animate-fade-up flex-col justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-3xl">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
-              Projects
+              Proyectos
             </p>
 
             <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
-              Real technical work for residential, commercial and business
-              environments.
+              Trabajos técnicos reales para entornos residenciales,
+              comerciales y empresariales.
             </h2>
 
             <p className="mt-5 text-lg leading-8 text-slate-300">
-              A showcase of electrical, security and infrastructure projects.
-              Photos can be added as completed work becomes available.
+              Una muestra de proyectos eléctricos, de seguridad y de
+              infraestructura. Se pueden agregar fotos conforme haya trabajos
+              terminados disponibles.
             </p>
           </div>
 
@@ -26,7 +27,7 @@ function ProjectsSection() {
             href="#contact"
             className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-5 py-3 font-semibold text-white transition duration-300 hover:border-cyan-300/50 hover:bg-white/5"
           >
-            Request similar work
+            Solicitar un trabajo similar
             <ArrowUpRight size={18} />
           </a>
         </div>
@@ -47,7 +48,7 @@ function ProjectsSection() {
                 ) : (
                   <div className="flex flex-col items-center gap-3 text-slate-400 transition duration-300 group-hover:text-cyan-200">
                     <ImageIcon size={34} />
-                    <span className="text-sm">Project photo</span>
+                    <span className="text-sm">Foto del proyecto</span>
                   </div>
                 )}
               </div>

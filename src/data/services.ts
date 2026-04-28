@@ -14,65 +14,65 @@ import {
 
 export const serviceCategories = [
   {
-    title: "Electrical Services",
-    description: "Residential, commercial and technical electrical solutions.",
+    title: "Servicios eléctricos",
+    description: "Soluciones eléctricas residenciales, comerciales y técnicas.",
     icon: Zap,
     services: [
-      "Electrical inspections",
-      "Residential and commercial installations",
-      "Preventive maintenance",
-      "Electrical plans",
-      "Meter and service requests",
-      "Electrical certifications",
-      "Electrical reviews and diagnostics",
+      "Inspecciones eléctricas",
+      "Instalaciones residenciales y comerciales",
+      "Mantenimiento preventivo",
+      "Planos eléctricos",
+      "Solicitudes de medidor y acometida",
+      "Certificaciones eléctricas",
+      "Revisiones y diagnósticos eléctricos",
     ],
   },
   {
-    title: "Air Conditioning",
-    description: "Installation, maintenance and repair of A/C systems.",
+    title: "Aire acondicionado",
+    description: "Instalación, mantenimiento y reparación de sistemas A/C.",
     icon: Snowflake,
     services: [
-      "Air conditioner installation",
-      "Preventive maintenance",
-      "Technical inspection",
-      "Cleaning and repair",
+      "Instalación de aire acondicionado",
+      "Mantenimiento preventivo",
+      "Inspección técnica",
+      "Limpieza y reparación",
     ],
   },
   {
-    title: "Security Systems",
-    description: "Security solutions for homes, businesses and facilities.",
+    title: "Sistemas de seguridad",
+    description: "Soluciones de seguridad para hogares, negocios e instalaciones.",
     icon: Shield,
     services: [
-      "CCTV security cameras",
-      "Security alarms",
-      "Fire alarm systems",
-      "Electric fences",
+      "Cámaras de seguridad CCTV",
+      "Alarmas de seguridad",
+      "Sistemas de alarma contra incendios",
+      "Cercas eléctricas",
     ],
   },
   {
-    title: "Network Infrastructure",
-    description: "Structured cabling, telecom and IT infrastructure.",
+    title: "Infraestructura de redes",
+    description: "Cableado estructurado, telecomunicaciones e infraestructura TI.",
     icon: Network,
     services: [
-      "Structured cabling",
-      "Network and telephone infrastructure",
-      "IT labs",
-      "Racks, conduits and network points",
+      "Cableado estructurado",
+      "Infraestructura de red y telefonía",
+      "Laboratorios de TI",
+      "Racks, tuberías y puntos de red",
     ],
   },
 ];
 
 export const serviceHighlights = [
   {
-    label: "Inspections",
+    label: "Inspecciones",
     icon: ClipboardCheck,
   },
   {
-    label: "Installations",
+    label: "Instalaciones",
     icon: Wrench,
   },
   {
-    label: "Electrical Plans",
+    label: "Planos eléctricos",
     icon: FileText,
   },
   {
@@ -80,15 +80,15 @@ export const serviceHighlights = [
     icon: Camera,
   },
   {
-    label: "Alarms",
+    label: "Alarmas",
     icon: Bell,
   },
   {
-    label: "Fire Systems",
+    label: "Sistemas contra incendios",
     icon: Flame,
   },
   {
-    label: "Telephony",
+    label: "Telefonía",
     icon: Phone,
   },
 ];

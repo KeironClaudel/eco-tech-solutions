@@ -108,3 +108,17 @@ select {
     transition-duration: 1ms !important;
   }
 }
+
+@keyframes logo-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-logo-scroll {
+  animation: logo-scroll 22s linear infinite;
+}

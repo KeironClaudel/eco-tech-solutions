@@ -23,7 +23,7 @@ function Footer() {
         </nav>
 
         <p className="text-sm">
-          © {new Date().getFullYear()} {brand.name}. All rights reserved.
+          © {new Date().getFullYear()} {brand.name}. Todos los derechos reservados.
         </p>
       </div>
     </footer>
