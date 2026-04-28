@@ -14,7 +14,7 @@ import hikvisionLogo from "../assets/images/brands/hikvision.svg";
 import honeywellLogo from "../assets/images/brands/honeywell.svg";
 import huaweiLogo from "../assets/images/brands/huawei.png";
 import jflLogo from "../assets/images/brands/jfl.svg";
-import linksysLogo from "../assets/images/brands/linksys.svg";
+import linksysLogo from "../assets/images/brands/Linksys.svg";
 import mikrotikLogo from "../assets/images/brands/mikrotik.svg";
 import paradoxLogo from "../assets/images/brands/paradox.png";
 import reyeeLogo from "../assets/images/brands/reyee.svg";
