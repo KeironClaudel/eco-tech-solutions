@@ -3,7 +3,7 @@ import { useState } from "react";
 import { brand } from "../../data/brand";
 import { navigationItems } from "../../data/navigation";
 import { buildWhatsAppUrl } from "../../lib/whatsapp";
-import logo from "../../assets/images/ecotech-logo.png";
+import logo from "../../assets/images/logo/ecotech-logo.png";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,7 +31,7 @@ function Navbar() {
               {brand.name}
             </span>
             <span className="mt-1 block text-[10px] uppercase tracking-[0.22em] text-cyan-300 sm:text-xs">
-              Technology Solutions
+              {brand.tagline}
             </span>
           </div>
         </a>

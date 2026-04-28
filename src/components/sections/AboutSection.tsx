@@ -1,4 +1,5 @@
 import { aboutFeatures } from "../../data/about";
+import { brand } from "../../data/brand";
 
 function AboutSection() {
   return (
@@ -6,25 +7,33 @@ function AboutSection() {
       <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-2">
         <div className="animate-fade-up">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
-            Nosotros
+            Confianza
           </p>
 
           <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
-            Soluciones técnicas confiables respaldadas por experiencia y compromiso.
+            Más de una década respaldando proyectos técnicos a lo largo del país.
           </h2>
 
           <p className="mt-6 text-lg leading-8 text-slate-300">
-            EcotechCR ofrece servicios eléctricos, de seguridad, aire
-            acondicionado e infraestructura para hogares, negocios y empresas.
-            Nuestro objetivo es brindar soluciones seguras, eficientes y
-            duraderas.
+            En {brand.name} combinamos experiencia, criterio técnico y atención
+            profesional para desarrollar soluciones en seguridad, ingeniería,
+            climatización e infraestructura tecnológica.
           </p>
 
           <p className="mt-4 text-slate-400">
-            Combinamos conocimiento técnico, materiales de calidad y ejecución
-            profesional para asegurar que cada proyecto cumpla altos
-            estándares.
+            Nuestro compromiso es entregar trabajos seguros, funcionales y
+            duraderos, adaptados a la realidad de cada cliente y cada proyecto.
           </p>
+
+          <div className="mt-8 rounded-3xl border border-cyan-300/20 bg-cyan-300/10 p-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-100">
+              Respaldo técnico
+            </p>
+            <p className="mt-3 text-2xl font-bold text-white">
+              Atención formal, respuesta ágil y acompañamiento técnico de
+              principio a fin.
+            </p>
+          </div>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2">

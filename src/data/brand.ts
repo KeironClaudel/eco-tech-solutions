@@ -1,8 +1,10 @@
 export const brand = {
-  name: "EcotechCR",
-  tagline: "Soluciones integrales en tecnología",
+  name: "Ecotech CR",
+  tagline: "Ingeniería | Seguridad | Tecnología",
   email: "ecotech.cr@hotmail.com",
   phone: "+506 8544-0393",
   whatsapp: "50685440393",
-  location: "Costa Rica",
+  location: "San José, Costa Rica",
+  coverage: "Cobertura en todo el país",
+  yearsExperience: "10+ años",
 };

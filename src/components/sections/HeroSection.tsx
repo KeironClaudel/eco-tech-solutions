@@ -1,13 +1,15 @@
-import { Network, ShieldCheck, Snowflake, Zap } from "lucide-react";
-import logo from "../../assets/images/ecotech-logo.png";
+import { BadgeCheck, Clock3, MapPin, MessageCircle } from "lucide-react";
+import logo from "../../assets/images/logo/ecotech-logo.png";
 import { brand } from "../../data/brand";
 import { buildWhatsAppUrl } from "../../lib/whatsapp";
 
 const highlights = [
-  { label: "Sistemas eléctricos", icon: Zap },
-  { label: "Soluciones de seguridad", icon: ShieldCheck },
-  { label: "Infraestructura de redes", icon: Network },
-  { label: "Aire acondicionado", icon: Snowflake },
+  { label: "Seguridad electrónica" },
+  { label: "Control de acceso" },
+  { label: "Redes y cableado" },
+  { label: "Aires acondicionados" },
+  { label: "Ingeniería eléctrica" },
+  { label: "Mantenimiento empresarial" },
 ];
 
 function HeroSection() {
@@ -16,31 +18,45 @@ function HeroSection() {
       <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="animate-fade-up">
           <p className="mb-5 inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm font-medium text-cyan-200">
-            Soluciones técnicas profesionales en Costa Rica
+            {brand.yearsExperience} en ingeniería, seguridad y tecnología
           </p>
 
           <h1 className="max-w-4xl text-4xl font-bold tracking-tight md:text-6xl">
-            Soluciones eléctricas, tecnológicas y de seguridad para hogares y
-            negocios.
+            Soluciones en ingeniería, seguridad y tecnología para hogares,
+            negocios y empresas.
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            Brindamos inspecciones eléctricas, instalaciones, mantenimiento
-            preventivo, planos eléctricos, servicios de aire acondicionado,
-            CCTV, alarmas, cercas eléctricas e infraestructura de redes y
-            telecomunicaciones.
+            En {brand.name} desarrollamos proyectos de seguridad electrónica,
+            control de acceso, redes, aire acondicionado e ingeniería
+            eléctrica con respaldo técnico y atención profesional.
           </p>
+
+          <div className="mt-8 flex flex-wrap gap-3 text-sm">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-slate-200">
+              <Clock3 size={16} className="text-cyan-300" />
+              {brand.yearsExperience} en el mercado
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-slate-200">
+              <MapPin size={16} className="text-cyan-300" />
+              {brand.coverage}
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-slate-200">
+              <BadgeCheck size={16} className="text-cyan-300" />
+              Servicio formal y técnico
+            </span>
+          </div>
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <a
               href={buildWhatsAppUrl(
-                "Hola, quisiera solicitar una cotización para un servicio técnico.",
+                "Hola, quisiera solicitar una visita técnica para un servicio de Ecotech CR.",
               )}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-xl bg-gradient-to-r from-cyan-400 to-purple-500 px-6 py-3 text-center font-semibold text-black shadow-lg shadow-cyan-950/40 transition hover:scale-[1.02] hover:opacity-90"
             >
-              Solicitar cotización
+              Solicite visita técnica hoy
             </a>
 
             <a
@@ -53,44 +69,50 @@ function HeroSection() {
         </div>
 
         <div className="animate-fade-up animation-delay-200 rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-2xl shadow-cyan-950/30">
-          <div className="mb-6 flex justify-center">
+          <div className="mb-6 flex justify-center border-b border-white/10 pb-6">
             <img
               src={logo}
               alt={`${brand.name} logo`}
-              className="h-28 w-auto drop-shadow-[0_0_28px_rgba(85,243,255,0.25)]"
+              className="h-24 w-auto"
             />
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            {highlights.map((item) => {
-              const Icon = item.icon;
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+              Servicios principales
+            </p>
 
-              return (
-                <div
+            <ul className="mt-5 space-y-3">
+              {highlights.map((item) => (
+                <li
                   key={item.label}
-                  className="rounded-2xl border border-white/10 bg-[#0b0f17] p-5 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30"
+                  className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0b0f17] px-4 py-3 text-sm text-slate-200"
                 >
-                  <div className="flex items-center gap-4">
-                    {/* Icono */}
-                    <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-cyan-300/10 text-cyan-200">
-                      <Icon size={22} />
-                    </div>
-
-                    {/* Texto */}
-                    <h3 className="text-sm font-semibold text-white">
-                      {item.label}
-                    </h3>
-                  </div>
-                </div>
-              );
-            })}
+                  <span className="size-2 rounded-full bg-cyan-300" />
+                  <span>{item.label}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="mt-5 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-5">
+          <div className="mt-6 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-5">
             <p className="text-sm font-medium text-cyan-100">
-              {brand.name} brinda soporte técnico integral para entornos
+              Atención rápida por WhatsApp, cobertura en{" "}
+              {brand.coverage.toLowerCase()} y soluciones para clientes
               residenciales, comerciales y empresariales.
             </p>
+
+            <a
+              href={buildWhatsAppUrl(
+                "Hola, quisiera información sobre cobertura y disponibilidad para una visita técnica.",
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-cyan-50 transition hover:text-white"
+            >
+              <MessageCircle size={16} />
+              Consultar por WhatsApp
+            </a>
           </div>
         </div>
       </div>

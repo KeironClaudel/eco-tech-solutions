@@ -1,4 +1,4 @@
-import { ArrowUpRight, ImageIcon } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { projects } from "../../data/projects";
 
 function ProjectsSection() {
@@ -8,18 +8,16 @@ function ProjectsSection() {
         <div className="flex animate-fade-up flex-col justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-3xl">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
-              Proyectos
+              Trabajos realizados
             </p>
 
             <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
-              Trabajos técnicos reales para entornos residenciales,
-              comerciales y empresariales.
+              Experiencia aplicada en instalaciones, seguridad e infraestructura.
             </h2>
 
             <p className="mt-5 text-lg leading-8 text-slate-300">
-              Una muestra de proyectos eléctricos, de seguridad y de
-              infraestructura. Se pueden agregar fotos conforme haya trabajos
-              terminados disponibles.
+              Presentamos algunos ejemplos del tipo de proyecto que atendemos
+              en entornos residenciales, comerciales y empresariales.
             </p>
           </div>
 
@@ -38,21 +36,6 @@ function ProjectsSection() {
               key={project.title}
               className="group animate-fade-up overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-white/[0.05] hover:shadow-cyan-950/30"
             >
-              <div className="flex aspect-[4/3] items-center justify-center border-b border-white/10 bg-gradient-to-br from-cyan-300/10 via-[#0b0f17] to-purple-500/10">
-                {project.imageUrl ? (
-                  <img
-                    src={project.imageUrl}
-                    alt={project.title}
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                  />
-                ) : (
-                  <div className="flex flex-col items-center gap-3 text-slate-400 transition duration-300 group-hover:text-cyan-200">
-                    <ImageIcon size={34} />
-                    <span className="text-sm">Foto del proyecto</span>
-                  </div>
-                )}
-              </div>
-
               <div className="p-6">
                 <div className="mb-4 flex flex-wrap gap-2">
                   <span className="rounded-full bg-cyan-300/10 px-3 py-1 text-xs font-medium text-cyan-200">
@@ -71,6 +54,11 @@ function ProjectsSection() {
                 <p className="mt-3 text-sm leading-6 text-slate-300">
                   {project.description}
                 </p>
+
+                <div className="mt-5 rounded-2xl border border-dashed border-white/10 bg-[#0b0f17] px-4 py-3 text-sm text-slate-400">
+                  Próximamente se agregarán fotografías reales de este tipo de
+                  trabajo.
+                </div>
               </div>
             </article>
           ))}
