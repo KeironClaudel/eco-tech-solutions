@@ -16,8 +16,7 @@ function ProjectsSection() {
             </h2>
 
             <p className="mt-5 text-lg leading-8 text-slate-300">
-              Presentamos algunos ejemplos del tipo de proyecto que atendemos
-              en entornos residenciales, comerciales y empresariales.
+              Ejemplos del tipo de trabajo que realizamos.
             </p>
           </div>
 
@@ -56,8 +55,7 @@ function ProjectsSection() {
                 </p>
 
                 <div className="mt-5 rounded-2xl border border-dashed border-white/10 bg-[#0b0f17] px-4 py-3 text-sm text-slate-400">
-                  Próximamente se agregarán fotografías reales de este tipo de
-                  trabajo.
+                  Fotos reales pronto.
                 </div>
               </div>
             </article>

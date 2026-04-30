@@ -27,9 +27,7 @@ function HeroSection() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            En {brand.name} desarrollamos proyectos de seguridad electrónica,
-            control de acceso, redes, aire acondicionado e ingeniería
-            eléctrica con respaldo técnico y atención profesional.
+            Seguridad, redes, climatización e ingeniería eléctrica.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3 text-sm">
@@ -97,9 +95,7 @@ function HeroSection() {
 
           <div className="mt-6 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-5">
             <p className="text-sm font-medium text-cyan-100">
-              Atención rápida por WhatsApp, cobertura en{" "}
-              {brand.coverage.toLowerCase()} y soluciones para clientes
-              residenciales, comerciales y empresariales.
+              WhatsApp inmediato. Cobertura nacional.
             </p>
 
             <a

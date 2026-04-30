@@ -1,5 +1,13 @@
+import { Star } from "lucide-react";
 import { aboutFeatures } from "../../data/about";
-import { brand } from "../../data/brand";
+
+const ratingColors = [
+  "#22d3ee",
+  "#38bdf8",
+  "#60a5fa",
+  "#8b5cf6",
+  "#a855f7",
+];
 
 function AboutSection() {
   return (
@@ -11,27 +19,32 @@ function AboutSection() {
           </p>
 
           <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
-            Más de una década respaldando proyectos técnicos a lo largo del país.
+            Respaldo técnico en todo Costa Rica.
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-slate-300">
-            En {brand.name} combinamos experiencia, criterio técnico y atención
-            profesional para desarrollar soluciones en seguridad, ingeniería,
-            climatización e infraestructura tecnológica.
-          </p>
+          <div className="mt-8">
+            <div className="mt-4 flex items-center gap-2">
+              {ratingColors.map((color, index) => (
+                <Star
+                  key={index}
+                  size={20}
+                  className="drop-shadow-[0_0_10px_rgba(34,211,238,0.14)]"
+                  style={{
+                    color,
+                    fill: color,
+                  }}
+                />
+              ))}
+              <span className="ml-2 bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-base font-semibold text-transparent">
+                5.0
+              </span>
+              <span className="text-sm font-medium text-slate-300">
+                Valoración de clientes
+              </span>
+            </div>
 
-          <p className="mt-4 text-slate-400">
-            Nuestro compromiso es entregar trabajos seguros, funcionales y
-            duraderos, adaptados a la realidad de cada cliente y cada proyecto.
-          </p>
-
-          <div className="mt-8 rounded-3xl border border-cyan-300/20 bg-cyan-300/10 p-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-100">
-              Respaldo técnico
-            </p>
             <p className="mt-3 text-2xl font-bold text-white">
-              Atención formal, respuesta ágil y acompañamiento técnico de
-              principio a fin.
+              Atención formal y respuesta ágil.
             </p>
           </div>
         </div>

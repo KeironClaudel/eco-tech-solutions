@@ -41,8 +41,7 @@ type BrandCategory = {
 export const brandCategories: BrandCategory[] = [
   {
     title: "Seguridad electrónica",
-    description:
-      "Soluciones para videovigilancia, control de acceso, intrusión y protección perimetral.",
+    description: "Cámaras, alarmas y control.",
     icon: Shield,
     brands: [
       { name: "Hikvision", logo: hikvisionLogo, logoClassName: "max-h-10" },
@@ -56,8 +55,7 @@ export const brandCategories: BrandCategory[] = [
   },
   {
     title: "Redes y conectividad",
-    description:
-      "Equipos y tecnologías para infraestructura de red, telecomunicaciones y conectividad empresarial.",
+    description: "Redes y telecom.",
     icon: Network,
     brands: [
       { name: "Reyee", logo: reyeeLogo, logoClassName: "max-h-10" },
@@ -69,8 +67,7 @@ export const brandCategories: BrandCategory[] = [
   },
   {
     title: "Material eléctrico",
-    description:
-      "Componentes y soluciones para instalaciones eléctricas residenciales, comerciales e industriales.",
+    description: "Equipos y componentes.",
     icon: Zap,
     brands: [
       { name: "Eaton", logo: eatonLogo, logoClassName: "max-h-10" },
@@ -80,8 +77,7 @@ export const brandCategories: BrandCategory[] = [
   },
   {
     title: "Alarmas contra incendio",
-    description:
-      "Sistemas verificados para detección, notificación y protección ante incendios.",
+    description: "Detección y protección.",
     icon: Flame,
     brands: [
       { name: "Fire-Lite", logo: fireliteLogo, logoClassName: "max-h-11" },
@@ -93,8 +89,7 @@ export const brandCategories: BrandCategory[] = [
 export const brandFlexibleCategories: BrandCategory[] = [
   {
     title: "Aire acondicionado",
-    description:
-      "Trabajamos con múltiples marcas según disponibilidad, tipo de equipo y necesidad del cliente.",
+    description: "Marcas según proyecto.",
     icon: Snowflake,
     brands: [
       { name: "Marcas variadas" },
@@ -104,8 +99,7 @@ export const brandFlexibleCategories: BrandCategory[] = [
   },
   {
     title: "Equipos de cómputo",
-    description:
-      "Seleccionamos componentes y marcas de PC de acuerdo con el proyecto, presupuesto y rendimiento requerido.",
+    description: "Componentes según necesidad.",
     icon: MonitorSmartphone,
     brands: [
       { name: "Componentes variados" },

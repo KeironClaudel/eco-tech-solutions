@@ -14,15 +14,8 @@ function BrandsSection() {
             </p>
 
             <h2 className="max-w-4xl text-3xl font-bold tracking-tight md:text-5xl">
-              Trabajamos con marcas reconocidas en la industria para garantizar
-              calidad, seguridad y rendimiento en cada proyecto.
+              Marcas reconocidas para cada tipo de proyecto.
             </h2>
-
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
-              Seleccionamos los equipos adecuados según las necesidades de cada
-              cliente, manteniendo flexibilidad técnica sin depender de una
-              sola marca.
-            </p>
           </div>
 
           <div className="animate-fade-up animation-delay-100 rounded-3xl border border-cyan-300/20 bg-cyan-300/10 p-6 shadow-xl shadow-cyan-950/20">
@@ -30,10 +23,7 @@ function BrandsSection() {
               Enfoque profesional
             </p>
             <p className="mt-3 text-sm leading-7 text-slate-200">
-              Estas son marcas y tecnologías con las que trabajamos
-              habitualmente. No comunicamos distribución oficial; usamos las
-              soluciones más adecuadas según el tipo de proyecto, la
-              disponibilidad y el objetivo del cliente.
+              Selección según proyecto y disponibilidad.
             </p>
           </div>
         </div>

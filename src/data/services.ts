@@ -11,7 +11,7 @@ import {
 export const serviceCategories = [
   {
     title: "Seguridad electrónica",
-    description: "Protección para hogares, negocios e instalaciones.",
+    description: "Protección y monitoreo.",
     icon: Shield,
     services: [
       "Cámaras de seguridad CCTV",
@@ -22,7 +22,7 @@ export const serviceCategories = [
   },
   {
     title: "Control de acceso",
-    description: "Sistemas para control, ingreso y monitoreo de usuarios.",
+    description: "Ingreso y control.",
     icon: DoorClosed,
     services: [
       "Control de acceso peatonal",
@@ -33,7 +33,7 @@ export const serviceCategories = [
   },
   {
     title: "Redes y cableado",
-    description: "Infraestructura para conectividad, telecom y orden técnico.",
+    description: "Conectividad e infraestructura.",
     icon: Network,
     services: [
       "Cableado estructurado",
@@ -44,7 +44,7 @@ export const serviceCategories = [
   },
   {
     title: "Aires acondicionados",
-    description: "Instalación, mantenimiento y soporte técnico especializado.",
+    description: "Instalación y mantenimiento.",
     icon: Snowflake,
     services: [
       "Instalación de aire acondicionado",
@@ -55,7 +55,7 @@ export const serviceCategories = [
   },
   {
     title: "Ingeniería eléctrica",
-    description: "Soluciones eléctricas residenciales, comerciales y técnicas.",
+    description: "Diseño y ejecución eléctrica.",
     icon: Zap,
     services: [
       "Inspecciones eléctricas",
@@ -69,7 +69,7 @@ export const serviceCategories = [
   },
   {
     title: "Mantenimiento empresarial",
-    description: "Acompañamiento técnico para continuidad operativa y prevención.",
+    description: "Soporte y prevención.",
     icon: Wrench,
     services: [
       "Visitas técnicas programadas",

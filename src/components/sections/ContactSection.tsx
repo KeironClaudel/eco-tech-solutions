@@ -17,9 +17,7 @@ function ContactSection() {
             </h2>
 
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
-              Compártenos los detalles de tu proyecto y con gusto te orientamos
-              sobre la mejor solución según tu necesidad, ubicación y alcance del
-              servicio.
+              Escríbanos y coordinamos.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -156,10 +154,6 @@ function ContactSection() {
               <h3 className="mt-2 text-3xl font-bold text-white">
                 Atención técnica en todo Costa Rica
               </h3>
-              <p className="mt-3 max-w-md text-sm leading-7 text-slate-300">
-                Coordinamos servicios en diferentes zonas del país según el
-                tipo de proyecto, alcance técnico y disponibilidad operativa.
-              </p>
 
               <div className="mt-6 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 px-4 py-4 text-sm text-cyan-100">
                 Cobertura nacional con base operativa en {brand.location}.

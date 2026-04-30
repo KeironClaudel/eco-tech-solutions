@@ -15,8 +15,7 @@ function ServicesSection() {
           </h2>
 
           <p className="mt-5 text-lg leading-8 text-slate-300">
-            Atendemos proyectos residenciales, comerciales y empresariales con
-            soluciones prácticas, seguras y bien ejecutadas en campo.
+            Residencial, comercial y empresarial.
           </p>
         </div>
 
