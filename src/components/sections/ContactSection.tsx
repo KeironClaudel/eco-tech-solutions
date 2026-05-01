@@ -1,6 +1,6 @@
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { brand } from "../../data/brand";
-import { buildWhatsAppUrl } from "../../lib/whatsapp";
+import { buildWhatsAppUrl, openWhatsApp } from "../../lib/whatsapp";
 
 function ContactSection() {
   return (
@@ -22,13 +22,11 @@ function ContactSection() {
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <a
-                href={buildWhatsAppUrl(
-                  "Hola, quisiera solicitar una cotización para un servicio de EcotechCR.",
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/40"
-              >
+              href={buildWhatsAppUrl(
+                "Hola, quisiera solicitar una cotización para un servicio de EcotechCR.",
+              )}
+              className="flex items-center gap-4 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/40"
+            >
                 <MessageCircle className="text-cyan-300" size={24} />
                 <div>
                   <p className="font-semibold text-white">WhatsApp</p>
@@ -135,7 +133,7 @@ function ContactSection() {
                     Mensaje: ${message}
                   `.trim();
 
-                  window.open(buildWhatsAppUrl(whatsappMessage), "_blank");
+                  openWhatsApp(whatsappMessage);
                 }}
                 className="rounded-xl bg-gradient-to-r from-cyan-400 to-purple-500 px-6 py-2.5 font-semibold text-black shadow-lg shadow-cyan-950/40 transition hover:scale-[1.02] hover:opacity-90"
               >

@@ -50,8 +50,6 @@ function HeroSection() {
               href={buildWhatsAppUrl(
                 "Hola, quisiera solicitar una visita técnica para un servicio de Ecotech CR.",
               )}
-              target="_blank"
-              rel="noopener noreferrer"
               className="rounded-xl bg-gradient-to-r from-cyan-400 to-purple-500 px-6 py-3 text-center font-semibold text-black shadow-lg shadow-cyan-950/40 transition hover:scale-[1.02] hover:opacity-90"
             >
               Solicite visita técnica hoy
@@ -102,8 +100,6 @@ function HeroSection() {
               href={buildWhatsAppUrl(
                 "Hola, quisiera información sobre cobertura y disponibilidad para una visita técnica.",
               )}
-              target="_blank"
-              rel="noopener noreferrer"
               className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-cyan-50 transition hover:text-white"
             >
               <MessageCircle size={16} />

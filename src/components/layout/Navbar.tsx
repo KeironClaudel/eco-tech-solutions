@@ -52,8 +52,6 @@ function Navbar() {
           href={buildWhatsAppUrl(
             "Hola, quisiera solicitar una cotización de servicios.",
           )}
-          target="_blank"
-          rel="noopener noreferrer"
           className="hidden rounded-lg bg-gradient-to-r from-cyan-400 to-purple-500 px-4 py-2 text-sm font-medium text-black transition hover:opacity-90 md:inline-flex"
         >
           Contacto
@@ -88,8 +86,6 @@ function Navbar() {
               href={buildWhatsAppUrl(
                 "Hola, quisiera solicitar una cotización de servicios.",
               )}
-              target="_blank"
-              rel="noopener noreferrer"
               onClick={closeMenu}
               className="mt-2 rounded-xl bg-gradient-to-r from-cyan-400 to-purple-500 px-4 py-3 text-center font-semibold text-black transition hover:opacity-90"
             >
