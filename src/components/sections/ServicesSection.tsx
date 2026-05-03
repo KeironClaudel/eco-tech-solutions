@@ -145,10 +145,10 @@ function ServicesSection() {
             </div>
           </div>
 
-          <div className="mt-10 hidden w-full max-w-[1120px] rounded-[30px] border border-slate-400/20 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.12),transparent_34%),linear-gradient(135deg,rgba(15,23,42,0.72),rgba(2,6,23,0.88))] px-6 py-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:px-8 sm:py-8 lg:block">
+          <div className="mt-10 hidden w-full max-w-[1035px] rounded-[30px] border border-slate-400/20 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.12),transparent_34%),linear-gradient(135deg,rgba(15,23,42,0.72),rgba(2,6,23,0.88))] px-6 py-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:px-8 sm:py-8 lg:block">
             <div
               key={activeService.title}
-              className="animate-fade-up grid gap-8 lg:grid-cols-[minmax(420px,0.92fr)_minmax(520px,1.08fr)] lg:items-stretch"
+              className="animate-fade-up grid gap-7 lg:grid-cols-[minmax(390px,0.9fr)_minmax(450px,1.02fr)] lg:items-stretch"
             >
               <div className="flex min-h-[280px] flex-col">
                 <p
@@ -231,12 +231,15 @@ function ServicesSection() {
       </div>
 
       <div
-        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58vw] min-w-[1080px] lg:block"
+        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[64vw] min-w-[1120px] max-w-[1280px] lg:block"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="relative h-full w-full">
-          <div className="absolute right-[12px] top-1/2 h-[780px] w-[1040px] -translate-y-1/2 overflow-hidden bg-transparent">
+          <div className="absolute inset-y-0 right-0 w-full overflow-hidden bg-transparent">
+            <div className="service-wheel-ambient absolute inset-y-[4%] right-[-8%] w-[88%]" />
+
+            <div className="absolute right-0 top-1/2 h-[780px] w-[1120px] -translate-y-1/2 overflow-hidden bg-transparent">
             <div className="service-wheel-background service-wheel-ring service-wheel-ring-primary absolute left-[532px] top-1/2 h-[760px] w-[760px] -translate-y-1/2 rounded-full">
               <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_26%_50%,rgba(85,243,255,0.055),transparent_44%),radial-gradient(circle_at_34%_78%,rgba(168,85,247,0.05),transparent_36%)]" />
             </div>
@@ -249,7 +252,7 @@ function ServicesSection() {
               <div
                 className="pointer-events-none absolute z-10 flex w-[330px] -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center"
                 style={{
-                  left: "816px",
+                  left: "868px",
                   top: "382px",
                 }}
               >
@@ -322,6 +325,7 @@ function ServicesSection() {
                     </button>
                   );
                 })}
+              </div>
             </div>
           </div>
         </div>
