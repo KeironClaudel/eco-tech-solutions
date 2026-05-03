@@ -40,7 +40,7 @@ type BrandCategory = {
 
 export const brandCategories: BrandCategory[] = [
   {
-    title: "Seguridad electrónica",
+    title: "Seguridad electrónica y control de acceso",
     description: "Cámaras, alarmas y control.",
     icon: Shield,
     brands: [

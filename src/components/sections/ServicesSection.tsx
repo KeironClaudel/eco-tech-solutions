@@ -4,21 +4,20 @@ import { serviceCategories } from "../../data/services";
 import logo from "../../assets/images/logo/ecotech-logo.png";
 import { buildWhatsAppUrl } from "../../lib/whatsapp";
 
-const serviceThemes = [
-  "text-cyan-300",
-  "text-emerald-300",
-  "text-sky-300",
-  "text-blue-300",
-  "text-amber-300",
-  "text-fuchsia-300",
-];
-
 const wheelPillOrbitCenterX = 930;
 const wheelPillOrbitCenterY = 352;
 const wheelPillOrbitRadiusX = 400;
 const wheelPillOrbitRadiusY = 360;
-const wheelPillAngles = [138, 158, 178, 198, 220, 244];
-const wheelPillDisplayOrder = [2, 3, 4, 5, 0, 1];
+const wheelPillAngles = [134, 150, 168, 186, 202, 222, 238];
+const wheelPillSlotAdjustments = [
+  { x: 0, y: -14 },
+  { x: 0, y: 0 },
+  { x: 0, y: 0 },
+  { x: 0, y: 0 },
+  { x: -18, y: 18 },
+  { x: -8, y: 8 },
+  { x: 28, y: 34 },
+];
 
 function ServicesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -49,7 +48,8 @@ function ServicesSection() {
   }, [autoplayEnabled, isHovered, prefersReducedMotion]);
 
   const activeService = serviceCategories[activeIndex];
-  const activeAccent = serviceThemes[activeIndex % serviceThemes.length];
+  const activeAccent = activeService.accentClass ?? "text-cyan-300";
+  const activeIconColor = activeService.iconColorClass ?? "text-cyan-300";
   const ActiveIcon = activeService.icon;
 
   const handleSelectService = (index: number) => {
@@ -251,7 +251,11 @@ function ServicesSection() {
                 }}
               >
                 <div className="flex size-[122px] items-center justify-center rounded-full border border-cyan-300/30 bg-[radial-gradient(circle_at_30%_26%,rgba(85,243,255,0.22),transparent_38%),radial-gradient(circle_at_74%_74%,rgba(168,85,247,0.2),transparent_40%),rgba(8,13,22,0.68)] text-white shadow-[0_0_28px_rgba(85,243,255,0.12)]">
-                  <ActiveIcon size={86} strokeWidth={1.8} />
+                  <ActiveIcon
+                    size={86}
+                    strokeWidth={1.8}
+                    className={activeIconColor}
+                  />
                 </div>
 
                 <p className={`mt-5 text-[0.72rem] font-bold uppercase tracking-[0.24em] ${activeAccent}`}>
@@ -270,19 +274,14 @@ function ServicesSection() {
               {serviceCategories.map((service, index) => {
                 const Icon = service.icon;
                 const isActive = index === activeIndex;
-                const slotIndex = wheelPillDisplayOrder.indexOf(index);
-                const angle = wheelPillAngles[slotIndex] ?? wheelPillAngles[0];
+                const angle = wheelPillAngles[index] ?? wheelPillAngles[0];
+                const slotAdjustment =
+                  wheelPillSlotAdjustments[index] ?? wheelPillSlotAdjustments[0];
                 const radians = (angle * Math.PI) / 180;
                 const pillX =
                   wheelPillOrbitCenterX + Math.cos(radians) * wheelPillOrbitRadiusX;
                 const pillY =
                   wheelPillOrbitCenterY - Math.sin(radians) * wheelPillOrbitRadiusY;
-                const leftNudge =
-                  slotIndex === wheelPillAngles.length - 1
-                    ? 34
-                    : slotIndex === wheelPillAngles.length - 2
-                      ? 20
-                      : 0;
 
                 return (
                   <button
@@ -295,11 +294,11 @@ function ServicesSection() {
                         : "service-wheel-pill-idle"
                     }`}
                     style={{
-                      left: `${pillX - leftNudge}px`,
-                      top: `${pillY}px`,
+                      left: `${pillX + slotAdjustment.x}px`,
+                      top: `${pillY + slotAdjustment.y}px`,
                       transform: `translate(-50%, -50%) scale(${isActive ? 1 : 0.88})`,
                       opacity: isActive ? 1 : 0.42,
-                      zIndex: isActive ? 30 : 20 - slotIndex,
+                      zIndex: isActive ? 30 : 20 - index,
                     }}
                     aria-pressed={isActive}
                     >
