@@ -362,77 +362,28 @@ select {
 
 .service-wheel-ring {
   pointer-events: none;
-}
-
-.service-wheel-ring::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background:
-    conic-gradient(
-      from 126deg,
-      transparent 0deg,
-      rgba(85, 243, 255, 0) 54deg,
-      rgba(85, 243, 255, 0.78) 104deg,
-      rgba(132, 132, 255, 0.62) 142deg,
-      rgba(168, 85, 247, 0.72) 182deg,
-      rgba(85, 243, 255, 0.42) 224deg,
-      transparent 264deg,
-      transparent 360deg
-    );
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-}
-
-.service-wheel-ring::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background:
-    radial-gradient(circle at 22% 50%, rgba(85, 243, 255, 0.08), transparent 38%),
-    radial-gradient(circle at 28% 72%, rgba(168, 85, 247, 0.065), transparent 34%);
-  filter: blur(8px);
+  background: transparent !important;
+  border: 1px solid rgba(85, 243, 255, 0.24);
+  box-shadow:
+    0 0 22px rgba(85, 243, 255, 0.1),
+    inset 0 0 18px rgba(168, 85, 247, 0.045);
 }
 
 .service-wheel-ring-primary {
-  filter: drop-shadow(0 0 18px rgba(85, 243, 255, 0.12));
-}
-
-.service-wheel-ring-primary::before {
-  padding: 1.5px;
+  border-color: rgba(85, 243, 255, 0.34);
+  box-shadow:
+    0 0 28px rgba(85, 243, 255, 0.12),
+    0 0 46px rgba(168, 85, 247, 0.08);
 }
 
 .service-wheel-ring-secondary {
-  opacity: 0.55;
-}
-
-.service-wheel-ring-secondary::before {
-  padding: 1px;
-  background:
-    conic-gradient(
-      from 130deg,
-      transparent 0deg,
-      rgba(168, 85, 247, 0) 60deg,
-      rgba(168, 85, 247, 0.34) 114deg,
-      rgba(85, 243, 255, 0.28) 170deg,
-      rgba(168, 85, 247, 0.24) 222deg,
-      transparent 270deg,
-      transparent 360deg
-    );
+  border-color: rgba(168, 85, 247, 0.16);
+  opacity: 0.5;
 }
 
 .service-wheel-background {
-  opacity: 0.42;
-  filter: saturate(0.78);
+  opacity: 1;
+  filter: none;
   transition:
     opacity 360ms ease,
     filter 360ms ease;
