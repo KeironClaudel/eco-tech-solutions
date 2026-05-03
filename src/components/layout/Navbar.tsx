@@ -14,7 +14,7 @@ function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#05070a]/80 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-[1680px] items-center justify-between px-6 py-4">
         <a
           href="#"
           className="flex min-w-0 items-center gap-3"
@@ -70,7 +70,7 @@ function Navbar() {
 
       {isMenuOpen && (
         <div className="border-t border-white/10 bg-[#05070a] px-6 py-5 md:hidden">
-          <nav className="mx-auto flex max-w-7xl flex-col gap-4">
+          <nav className="mx-auto flex max-w-[1680px] flex-col gap-4">
             {navigationItems.map((item) => (
               <a
                 key={item.href}

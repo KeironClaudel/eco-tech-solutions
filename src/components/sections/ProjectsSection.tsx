@@ -4,7 +4,7 @@ import { projects } from "../../data/projects";
 function ProjectsSection() {
   return (
     <section id="projects" className="px-6 py-24 text-slate-50">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-[1680px]">
         <div className="flex animate-fade-up flex-col justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-3xl">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">

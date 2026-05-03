@@ -16,9 +16,9 @@ function App() {
       <main>
         <HeroSection />
         <div className="section-divider" />
-        <AboutSection />
-        <div className="section-divider" />
         <ServicesSection />
+        <div className="section-divider" />
+        <AboutSection />
         <div className="section-divider" />
         <BrandsSection />
         <div className="section-divider" />

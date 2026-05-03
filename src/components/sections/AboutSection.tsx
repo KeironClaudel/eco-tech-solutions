@@ -12,7 +12,7 @@ const ratingColors = [
 function AboutSection() {
   return (
     <section id="about" className="px-6 py-24 text-slate-50">
-      <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-2">
+      <div className="mx-auto grid max-w-[1680px] gap-14 lg:grid-cols-2">
         <div className="animate-fade-up">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
             Confianza
