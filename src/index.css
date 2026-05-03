@@ -438,16 +438,6 @@ select {
     filter 360ms ease;
 }
 
-.service-wheel-ambient {
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 60% 52%, rgba(168, 85, 247, 0.14), transparent 24%),
-    radial-gradient(circle at 72% 52%, rgba(255, 255, 255, 0.05), transparent 20%),
-    radial-gradient(circle at 56% 50%, rgba(15, 23, 42, 0.94), transparent 58%);
-  filter: blur(8px);
-  opacity: 0.72;
-}
-
 .service-wheel-pill {
   overflow: hidden;
   isolation: isolate;
