@@ -34,21 +34,27 @@ function ContactSection() {
                 </div>
               </a>
 
-              <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+              <a
+                href={`tel:${brand.phone.replace(/\s+/g, "")}`}
+                className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/40 hover:bg-white/[0.05]"
+              >
                 <Phone className="text-cyan-300" size={24} />
                 <div>
                   <p className="font-semibold text-white">Teléfono</p>
                   <p className="text-sm text-slate-300">{brand.phone}</p>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+              <a
+                href={`mailto:${brand.email}`}
+                className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/40 hover:bg-white/[0.05]"
+              >
                 <Mail className="text-cyan-300" size={24} />
                 <div>
                   <p className="font-semibold text-white">Email</p>
                   <p className="text-sm text-slate-300">{brand.email}</p>
                 </div>
-              </div>
+              </a>
 
               <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
                 <MapPin className="text-cyan-300" size={24} />
