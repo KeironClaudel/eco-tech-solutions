@@ -1,6 +1,26 @@
 import { useEffect, useRef } from "react";
 
-const PARTICLES = {
+type LayerType = "front" | "back";
+
+type Point = {
+  x: number;
+  y: number;
+};
+
+type ParticleConfig = {
+  colorA: string;
+  colorB: string;
+  duration: number;
+  delay: number;
+  path: [number, number][];
+};
+
+type ParticlesMap = {
+  back: ParticleConfig[];
+  front: ParticleConfig[];
+};
+
+const PARTICLES: ParticlesMap = {
   back: [
     {
       colorA: "85,243,255",
@@ -55,7 +75,13 @@ const PARTICLES = {
   ],
 };
 
-function cubicBezier(t, p0, p1, p2, p3) {
+function cubicBezier(
+  t: number,
+  p0: Point,
+  p1: Point,
+  p2: Point,
+  p3: Point,
+): Point {
   const u = 1 - t;
   const tt = t * t;
   const uu = u * u;
@@ -68,34 +94,44 @@ function cubicBezier(t, p0, p1, p2, p3) {
   };
 }
 
-function toPoint([x, y], width, height) {
+function toPoint(
+  [x, y]: [number, number],
+  width: number,
+  height: number,
+): Point {
   return {
     x: x * width,
     y: y * height,
   };
 }
 
-function easeInOut(t) {
+function easeInOut(t: number): number {
   return t * t * (3 - 2 * t);
 }
 
-function HeroLogoParticlesCanvas({ layer = "front" }) {
-  const canvasRef = useRef(null);
-  const rafRef = useRef(null);
-  const historiesRef = useRef([]);
+type Props = {
+  layer?: LayerType;
+};
+
+function HeroLogoParticlesCanvas({ layer = "front" }: Props) {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const rafRef = useRef<number | null>(null);
+  const historiesRef = useRef<Point[][]>([]);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    const canvas = canvasRef.current!;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d")!;
+
     const particles = PARTICLES[layer] ?? PARTICLES.front;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (reduceMotion.matches) return;
 
     function resize() {
-      const rect = canvas.parentElement.getBoundingClientRect();
+      const rect = canvas.parentElement?.getBoundingClientRect();
+      if (!rect) return;
+
       const dpr = window.devicePixelRatio || 1;
 
       canvas.width = rect.width * dpr;
@@ -107,7 +143,11 @@ function HeroLogoParticlesCanvas({ layer = "front" }) {
       historiesRef.current = particles.map(() => []);
     }
 
-    function drawTrail(history, colorA, colorB) {
+    function drawTrail(
+      history: Point[],
+      colorA: string,
+      colorB: string,
+    ) {
       for (let i = 1; i < history.length; i++) {
         const prev = history[i - 1];
         const point = history[i];
@@ -126,7 +166,11 @@ function HeroLogoParticlesCanvas({ layer = "front" }) {
       ctx.shadowBlur = 0;
     }
 
-    function drawParticle(point, colorA, colorB) {
+    function drawParticle(
+      point: Point,
+      colorA: string,
+      colorB: string,
+    ) {
       const glow = ctx.createRadialGradient(
         point.x,
         point.y,
@@ -151,7 +195,7 @@ function HeroLogoParticlesCanvas({ layer = "front" }) {
       ctx.fill();
     }
 
-    function animate(time) {
+    function animate(time: number) {
       const width = canvas.clientWidth;
       const height = canvas.clientHeight;
 
