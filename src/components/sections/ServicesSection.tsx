@@ -13,19 +13,12 @@ const serviceThemes = [
   "text-fuchsia-300",
 ];
 
-const wheelAngles = [-58, -34, -10, 14, 38, 60];
-const wheelRadius = 360;
-const wheelCenterX = 470;
-const wheelCenterY = 500;
-
-const wheelPositions = wheelAngles.map((angle) => {
-  const radians = (angle * Math.PI) / 180;
-
-  return {
-    x: wheelCenterX - Math.cos(radians) * wheelRadius,
-    y: wheelCenterY + Math.sin(radians) * wheelRadius,
-  };
-});
+const wheelPillOrbitCenterX = 930;
+const wheelPillOrbitCenterY = 352;
+const wheelPillOrbitRadiusX = 400;
+const wheelPillOrbitRadiusY = 360;
+const wheelPillAngles = [138, 158, 178, 198, 220, 244];
+const wheelPillDisplayOrder = [2, 3, 4, 5, 0, 1];
 
 function ServicesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -57,6 +50,7 @@ function ServicesSection() {
 
   const activeService = serviceCategories[activeIndex];
   const activeAccent = serviceThemes[activeIndex % serviceThemes.length];
+  const ActiveIcon = activeService.icon;
 
   const handleSelectService = (index: number) => {
     setActiveIndex(index);
@@ -242,37 +236,73 @@ function ServicesSection() {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="relative h-full w-full">
-          <div className="absolute right-0 top-1/2 h-[860px] w-full -translate-y-1/2 overflow-hidden bg-transparent">
-            <div className="service-wheel-ring service-wheel-ring-primary absolute right-[-610px] top-[54%] h-[1040px] w-[1040px] -translate-y-1/2 rounded-full">
+          <div className="absolute right-[12px] top-1/2 h-[780px] w-[1040px] -translate-y-1/2 overflow-hidden bg-transparent">
+            <div className="service-wheel-background service-wheel-ring service-wheel-ring-primary absolute left-[532px] top-1/2 h-[760px] w-[760px] -translate-y-1/2 rounded-full">
               <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_26%_50%,rgba(85,243,255,0.055),transparent_44%),radial-gradient(circle_at_34%_78%,rgba(168,85,247,0.05),transparent_36%)]" />
             </div>
 
-            <div className="service-wheel-ring service-wheel-ring-secondary absolute right-[-500px] top-[54%] h-[900px] w-[900px] -translate-y-1/2 rounded-full">
+            <div className="service-wheel-background service-wheel-ring service-wheel-ring-secondary absolute left-[602px] top-1/2 h-[620px] w-[620px] -translate-y-1/2 rounded-full">
               <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_28%_52%,rgba(85,243,255,0.04),transparent_46%)]" />
             </div>
 
-            <div className="absolute right-[-610px] top-[54%] h-[1040px] w-[1040px] -translate-y-1/2">
+            <div className="absolute inset-0">
+              <div
+                className="pointer-events-none absolute z-10 flex w-[330px] -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center"
+                style={{
+                  left: "816px",
+                  top: "382px",
+                }}
+              >
+                <div className="flex size-[122px] items-center justify-center rounded-full border border-cyan-300/30 bg-[radial-gradient(circle_at_30%_26%,rgba(85,243,255,0.22),transparent_38%),radial-gradient(circle_at_74%_74%,rgba(168,85,247,0.2),transparent_40%),rgba(8,13,22,0.68)] text-white shadow-[0_0_28px_rgba(85,243,255,0.12)]">
+                  <ActiveIcon size={86} strokeWidth={1.8} />
+                </div>
+
+                <p className={`mt-5 text-[0.72rem] font-bold uppercase tracking-[0.24em] ${activeAccent}`}>
+                  Categoria activa
+                </p>
+
+                <h4 className="mt-3 max-w-[10ch] text-[3rem] font-bold leading-[0.94] tracking-tight text-white">
+                  {activeService.title}
+                </h4>
+
+                <p className="mt-4 whitespace-nowrap text-[1.05rem] leading-8 text-slate-300">
+                  {activeService.description}
+                </p>
+              </div>
 
               {serviceCategories.map((service, index) => {
                 const Icon = service.icon;
                 const isActive = index === activeIndex;
-                const position = wheelPositions[index];
+                const slotIndex = wheelPillDisplayOrder.indexOf(index);
+                const angle = wheelPillAngles[slotIndex] ?? wheelPillAngles[0];
+                const radians = (angle * Math.PI) / 180;
+                const pillX =
+                  wheelPillOrbitCenterX + Math.cos(radians) * wheelPillOrbitRadiusX;
+                const pillY =
+                  wheelPillOrbitCenterY - Math.sin(radians) * wheelPillOrbitRadiusY;
+                const leftNudge =
+                  slotIndex === wheelPillAngles.length - 1
+                    ? 34
+                    : slotIndex === wheelPillAngles.length - 2
+                      ? 20
+                      : 0;
 
                 return (
                   <button
                     key={service.title}
                     type="button"
                     onClick={() => handleSelectService(index)}
-                    className={`service-wheel-pill pointer-events-auto absolute z-20 flex min-h-[78px] w-[204px] items-center gap-4 rounded-full border px-4 py-3 text-left transition-[border-color,background-color,box-shadow,transform,opacity] duration-300 ${
+                    className={`service-wheel-pill pointer-events-auto absolute z-20 flex min-h-[78px] w-[212px] items-center gap-4 rounded-full border px-4 py-3 text-left transition-[border-color,background-color,box-shadow,transform,opacity,left,top] duration-300 ${
                       isActive
                         ? "service-wheel-pill-active"
                         : "service-wheel-pill-idle"
                     }`}
                     style={{
-                      left: `${position.x}px`,
-                      top: `${position.y}px`,
-                      transform: `translate(-50%, -50%) scale(${isActive ? 1 : 0.92})`,
-                      opacity: isActive ? 1 : 0.76,
+                      left: `${pillX - leftNudge}px`,
+                      top: `${pillY}px`,
+                      transform: `translate(-50%, -50%) scale(${isActive ? 1 : 0.88})`,
+                      opacity: isActive ? 1 : 0.42,
+                      zIndex: isActive ? 30 : 20 - slotIndex,
                     }}
                     aria-pressed={isActive}
                     >

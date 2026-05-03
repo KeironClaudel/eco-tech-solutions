@@ -430,6 +430,14 @@ select {
     );
 }
 
+.service-wheel-background {
+  opacity: 0.42;
+  filter: saturate(0.78);
+  transition:
+    opacity 360ms ease,
+    filter 360ms ease;
+}
+
 .service-wheel-pill {
   overflow: hidden;
   isolation: isolate;
