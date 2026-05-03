@@ -99,17 +99,71 @@ select {
   }
 
   50% {
-    transform: translate3d(0, -14px, 0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
-@keyframes hero-orbit-drift {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
+@keyframes hero-logo-activate {
+  0%,
+  20%,
+  100% {
+    opacity: 0.08;
+    transform: scale(0.78);
   }
 
+  34% {
+    opacity: 0.22;
+  }
+
+  48% {
+    opacity: 0.94;
+    transform: scale(1.04);
+  }
+
+  60% {
+    opacity: 0.48;
+    transform: scale(1.08);
+  }
+
+  74% {
+    opacity: 0.12;
+    transform: scale(0.88);
+  }
+}
+
+@keyframes hero-circuit-stream {
+  0% {
+    stroke-dasharray: 0 120;
+    stroke-dashoffset: 116;
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 0.15;
+    stroke-dasharray: 8 120;
+  }
+
+  34% {
+    opacity: 0.92;
+    stroke-dasharray: 18 120;
+  }
+
+  52% {
+    opacity: 1;
+    stroke-dasharray: 24 120;
+    stroke-dashoffset: 24;
+  }
+
+  66% {
+    opacity: 0.9;
+    stroke-dashoffset: 0;
+  }
+
+  82%,
   100% {
-    transform: translate(-50%, -50%) rotate(360deg);
+    opacity: 0;
+    stroke-dasharray: 0 120;
+    stroke-dashoffset: 0;
   }
 }
 
@@ -166,43 +220,33 @@ select {
 
 .hero-logo-card {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   display: flex;
-  min-height: 360px;
-  width: min(86%, 560px);
+  height: 400px;
+  width: 4400px;
   align-items: center;
   justify-content: center;
-  animation: hero-logo-float 7.5s ease-in-out infinite;
-}
-
-.hero-logo-core-ring {
-  position: absolute;
-  inset: 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background:
-    radial-gradient(circle at 30% 30%, rgba(85, 243, 255, 0.16), transparent 38%),
-    radial-gradient(circle at 70% 70%, rgba(168, 85, 247, 0.14), transparent 36%),
-    rgba(8, 12, 20, 0.76);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 0 42px rgba(85, 243, 255, 0.08);
+  border: none;
+  background: transparent;
+  box-shadow: none;
 }
 
 .hero-logo-glow {
   position: absolute;
-  inset: 12%;
+  inset: 14%;
   border-radius: 999px;
   background:
-    radial-gradient(circle at 38% 42%, rgba(85, 243, 255, 0.24), transparent 46%),
-    radial-gradient(circle at 64% 58%, rgba(168, 85, 247, 0.18), transparent 48%);
-  filter: blur(30px);
+    radial-gradient(circle at 50% 48%, rgba(85, 243, 255, 0.34), transparent 42%),
+    radial-gradient(circle at 48% 54%, rgba(168, 85, 247, 0.22), transparent 46%);
+  filter: blur(28px);
+  transform-origin: center;
+  animation: hero-logo-activate 6.4s ease-in-out infinite;
 }
 
 .hero-logo-mark {
   position: relative;
   z-index: 2;
-  width: min(92%, 520px);
+  width: 420px;
   height: auto;
   object-fit: contain;
   filter:
@@ -211,66 +255,93 @@ select {
     drop-shadow(0 18px 34px rgba(2, 6, 23, 0.46));
 }
 
-.hero-logo-orbit {
+.hero-circuit {
   position: absolute;
-  left: 50%;
-  top: 46%;
-  border-radius: 999px;
-  border: 1px solid rgba(85, 243, 255, 0.14);
-  transform: translate(-50%, -50%);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
 }
 
-.hero-logo-orbit::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -5px;
-  height: 10px;
-  width: 10px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, rgba(85, 243, 255, 0.95), rgba(168, 85, 247, 0.85));
-  box-shadow: 0 0 18px rgba(85, 243, 255, 0.45);
-  transform: translateY(-50%);
+.hero-circuit-back {
+  z-index: 1;
 }
 
-.hero-logo-orbit-primary {
-  height: 360px;
-  width: 360px;
-  animation: hero-orbit-drift 18s linear infinite;
+.hero-circuit-front {
+  z-index: 4;
 }
 
-.hero-logo-orbit-secondary {
-  height: 470px;
-  width: 470px;
-  border-color: rgba(168, 85, 247, 0.16);
-  animation: hero-orbit-drift 28s linear infinite reverse;
+.hero-circuit-path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.2;
+  stroke-dashoffset: 116;
+  stroke-dasharray: 0 120;
+  filter: drop-shadow(0 0 10px currentColor);
+  animation: hero-circuit-stream 6.4s linear infinite;
 }
 
-.hero-logo-orbit-secondary::after {
-  top: auto;
-  bottom: 18%;
-  right: 9%;
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.9), rgba(85, 243, 255, 0.8));
-  transform: none;
+.hero-circuit-front .hero-circuit-path {
+  stroke-width: 2.6;
+  filter:
+    drop-shadow(0 0 10px currentColor)
+    drop-shadow(0 0 24px currentColor);
 }
 
-.hero-logo-orbit-tertiary {
-  height: 580px;
-  width: 580px;
-  border-color: rgba(255, 255, 255, 0.06);
-  animation: hero-orbit-drift 40s linear infinite;
+.hero-circuit-path-cyan {
+  color: rgba(85, 243, 255, 0.98);
+  stroke: currentColor;
 }
 
-.hero-logo-orbit-tertiary::after {
-  top: 20%;
-  right: 12%;
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-  transform: none;
+.hero-circuit-path-purple {
+  color: rgba(168, 85, 247, 0.96);
+  stroke: currentColor;
 }
 
-.hero-logo-caption {
-  display: none;
+.hero-circuit-dot {
+  fill: currentColor;
+  filter:
+    drop-shadow(0 0 6px currentColor)
+    drop-shadow(0 0 12px currentColor);
+}
+
+.hero-circuit-terminal {
+  fill: rgba(5, 7, 10, 0.95);
+  stroke-width: 2;
+  opacity: 0;
+  animation: circuit-trace 6.4s ease-in-out infinite;
+}
+
+.hero-circuit-flash {
+  fill: currentColor;
+  opacity: 0;
+  transform-origin: center;
+  animation: hero-logo-activate 6.4s ease-out infinite;
+  filter:
+    drop-shadow(0 0 10px currentColor)
+    drop-shadow(0 0 22px currentColor);
+}
+
+.hero-circuit-delay-0 {
+  animation-delay: 0s;
+}
+
+.hero-circuit-delay-1 {
+  animation-delay: 0.18s;
+}
+
+.hero-circuit-delay-2 {
+  animation-delay: 0.36s;
+}
+
+.hero-circuit-delay-3 {
+  animation-delay: 0.54s;
+}
+
+.hero-circuit-delay-4 {
+  animation-delay: 0.72s;
 }
 
 .service-wheel-ring {
@@ -437,16 +508,10 @@ select {
   }
 
   .hero-logo-card,
-  .hero-logo-orbit-primary,
-  .hero-logo-orbit-secondary,
-  .hero-logo-orbit-tertiary {
+  .hero-logo-glow,
+  .hero-circuit-path {
     animation: none;
   }
-
-  .hero-logo-particle {
-  animation: none;
-  opacity: 0.35;
-}
 }
 
 @media (pointer: coarse) {
@@ -455,149 +520,243 @@ select {
   }
 }
 
-@keyframes hero-light-cross-a {
-  0% {
-    transform: translate3d(-260px, 120px, 0) rotate(-25deg);
-    opacity: 0;
-  }
-  18% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate3d(250px, -150px, 0) rotate(-25deg);
-    opacity: 0;
-  }
-}
-
-@keyframes hero-light-cross-b {
-  0% {
-    transform: translate3d(230px, 140px, 0) rotate(155deg);
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.9;
-  }
-  100% {
-    transform: translate3d(-250px, -120px, 0) rotate(155deg);
-    opacity: 0;
-  }
-}
-
-@keyframes hero-light-cross-c {
-  0% {
-    transform: translate3d(-240px, -110px, 0) scale(0.8);
-    opacity: 0;
-  }
-  18% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate3d(260px, 130px, 0) scale(1.05);
-    opacity: 0;
-  }
-}
-
-@keyframes hero-light-cross-d {
-  0% {
-    transform: translate3d(260px, -90px, 0) scale(0.75);
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate3d(-240px, 130px, 0) scale(1);
-    opacity: 0;
-  }
-}
-
-.hero-logo-particle {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 14px;
-  height: 14px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #55f3ff, #a855f7);
-  box-shadow:
-    0 0 18px rgba(85, 243, 255, 0.75),
-    0 0 42px rgba(168, 85, 247, 0.35);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.hero-logo-particle {
-  transform-origin: center;
-}
-
-.hero-logo-particle::before {
-  content: "";
-  position: absolute;
-  left: -90px; /* estela hacia atrás */
-  top: 50%;
-  width: 90px;
-  height: 2px;
-  border-radius: 999px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(85, 243, 255, 0.4),
-    rgba(168, 85, 247, 0.9)
-  );
-  transform: translateY(-50%);
-  filter: blur(1px);
-  opacity: 0.8;
-}
-
-.hero-logo-particle-back {
-  z-index: 1;
-  opacity: 0.65;
-  filter: blur(0.5px);
-}
-
-.hero-logo-particle-front {
-  z-index: 4;
-}
-
-.hero-logo-particle-a {
-  animation: hero-light-cross-a 5.8s ease-in-out infinite;
-}
-
-.hero-logo-particle-b {
-  animation: hero-light-cross-b 7.2s ease-in-out infinite 1.4s;
-}
-
-.hero-logo-particle-c {
-  animation: hero-light-cross-c 6.4s ease-in-out infinite 0.7s;
-}
-
-.hero-logo-particle-d {
-  animation: hero-light-cross-d 8s ease-in-out infinite 2.1s;
-}
-
-.hero-logo-stage {
-  position: relative;
-}
-
 .hero-logo-canvas {
   pointer-events: none;
   position: absolute;
   inset: 0;
-  width: 100%;
   height: 100%;
-  mix-blend-mode: screen;
+  width: 100%;
 }
 
 .hero-logo-canvas-back {
   z-index: 1;
-  opacity: 0.55;
+  opacity: 0.65;
 }
 
 .hero-logo-canvas-front {
   z-index: 4;
+  opacity: 0.9;
+}
+
+.hero-circuit {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.hero-circuit-back {
+  z-index: 1;
+  opacity: 0.65;
+}
+
+.hero-circuit-front {
+  z-index: 4;
   opacity: 0.95;
 }
 
-.hero-logo-card {
-  z-index: 2;
+.hero-circuit-path {
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: circuit-trace 6.4s ease-in-out infinite;
+}
+
+.hero-circuit-decorative {
+  opacity: 0.48;
+}
+
+.hero-circuit-decorative .hero-circuit-path {
+  stroke-width: 1.7;
+}
+
+.hero-circuit-path-cyan {
+  stroke: rgba(85, 243, 255, 0.92);
+  filter: drop-shadow(0 0 10px rgba(85, 243, 255, 0.5));
+}
+
+.hero-circuit-path-purple {
+  stroke: rgba(168, 85, 247, 0.9);
+  filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5));
+}
+
+.hero-circuit-terminal {
+  fill: rgba(5, 7, 10, 0.95);
+  stroke-width: 2;
+  opacity: 0;
+  animation: circuit-node-sync 6.4s ease-in-out infinite;
+}
+
+.hero-circuit-dot {
+  fill: currentColor;
+  opacity: 0;
+  animation: circuit-dot 6.4s ease-in-out infinite;
+}
+
+.hero-circuit-flash {
+  opacity: 0;
+  animation: circuit-flash 6.4s ease-in-out infinite;
+}
+
+.hero-circuit-delay-0 {
+  animation-delay: 0s;
+}
+
+.hero-circuit-delay-1 {
+  animation-delay: 0.9s;
+}
+
+.hero-circuit-delay-2 {
+  animation-delay: 1.8s;
+}
+
+.hero-circuit-delay-3 {
+  animation-delay: 2.7s;
+}
+
+.hero-logo-reactive-glow {
+  position: absolute;
+  inset: 6%;
+  z-index: 1;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(85, 243, 255, 0.34), transparent 52%),
+    radial-gradient(circle at 46% 56%, rgba(168, 85, 247, 0.24), transparent 58%);
+  filter: blur(30px);
+  opacity: 0;
+  transform: scale(0.9);
+  animation: hero-logo-reactive-glow 6.4s ease-in-out infinite;
+}
+
+@keyframes circuit-trace {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 0.3;
+  }
+
+  58% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+
+  76% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes circuit-dot {
+  0% {
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  58% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes circuit-flash {
+  0%,
+  54% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  64% {
+    opacity: 0.85;
+    transform: scale(2.8);
+  }
+
+  82%,
+  100% {
+    opacity: 0;
+    transform: scale(4);
+  }
+}
+
+@keyframes circuit-terminal {
+  0%,
+  52% {
+    opacity: 0;
+  }
+
+  58%,
+  76% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes circuit-node-sync {
+  0% {
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 0.3;
+  }
+
+  58% {
+    opacity: 1;
+  }
+
+  76% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hero-logo-reactive-glow {
+  0%,
+  48% {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+
+  58% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+
+  76% {
+    opacity: 0.55;
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
 }

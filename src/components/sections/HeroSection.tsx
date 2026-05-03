@@ -2,7 +2,106 @@ import { BadgeCheck, Clock3, MapPin } from "lucide-react";
 import logo from "../../assets/images/logo/ecotech-logo.png";
 import { brand } from "../../data/brand";
 import { buildWhatsAppUrl } from "../../lib/whatsapp";
-import HeroLogoParticlesCanvas from "../home/HeroLogoParticlesCanvas";
+
+type CircuitColor = "cyan" | "purple";
+
+type HeroCircuitRun = {
+  id: string;
+  color: CircuitColor;
+  delayClass: string;
+  path: string;
+  endX: number;
+  endY: number;
+};
+
+const heroCircuitBackRuns: HeroCircuitRun[] = [
+  {
+    id: "back-left-top",
+    color: "cyan",
+    delayClass: "hero-circuit-delay-0",
+    path: "M 30 70 H 150 V 125 H 170",
+    endX: 170,
+    endY: 125,
+  },
+  {
+    id: "back-right-bottom",
+    color: "purple",
+    delayClass: "hero-circuit-delay-2",
+    path: "M 530 215 H 405 V 235 H 355",
+    endX: 355,
+    endY: 235,
+  },
+];
+
+const heroCircuitFrontRuns: HeroCircuitRun[] = [
+  {
+    id: "front-left-bottom",
+    color: "purple",
+    delayClass: "hero-circuit-delay-1",
+    path: "M 45 275 H 80 V 220 H 210",
+    endX: 210,
+    endY: 220,
+  },
+  {
+    id: "front-right-top",
+    color: "cyan",
+    delayClass: "hero-circuit-delay-3",
+    path: "M 515 90 H 400 V 145 H 355",
+    endX: 355,
+    endY: 145,
+  },
+];
+
+const heroCircuitDecorativeRuns: HeroCircuitRun[] = [
+  {
+    id: "decor-left-top",
+    color: "cyan",
+    delayClass: "hero-circuit-delay-0",
+    path: "M 10 55 H 90 V 90 H 135",
+    endX: 135,
+    endY: 90,
+  },
+  {
+    id: "decor-left-mid",
+    color: "purple",
+    delayClass: "hero-circuit-delay-2",
+    path: "M 25 175 H 115 V 145 H 155",
+    endX: 155,
+    endY: 145,
+  },
+  {
+    id: "decor-left-bottom",
+    color: "cyan",
+    delayClass: "hero-circuit-delay-1",
+    path: "M 35 315 H 145 V 285 H 185",
+    endX: 185,
+    endY: 285,
+  },
+  {
+    id: "decor-right-top",
+    color: "purple",
+    delayClass: "hero-circuit-delay-3",
+    path: "M 545 60 H 455 V 95 H 420",
+    endX: 420,
+    endY: 95,
+  },
+  {
+    id: "decor-right-mid",
+    color: "cyan",
+    delayClass: "hero-circuit-delay-1",
+    path: "M 535 180 H 470 V 215 H 425",
+    endX: 425,
+    endY: 215,
+  },
+  {
+    id: "decor-right-bottom",
+    color: "purple",
+    delayClass: "hero-circuit-delay-0",
+    path: "M 520 320 H 430 V 290 H 395",
+    endX: 395,
+    endY: 290,
+  },
+];
 
 function HeroSection() {
   return (
@@ -61,22 +160,80 @@ function HeroSection() {
             </div>
           </div>
 
-          <div className="relative hidden min-h-[440px] animate-fade-up animation-delay-200 lg:block">
-            <div className="hero-logo-stage absolute inset-0 flex items-center justify-center overflow-visible">
-              <HeroLogoParticlesCanvas layer="back" />
+            <div className="relative hidden min-h-[440px] animate-fade-up animation-delay-200 lg:block">
+              <div className="hero-logo-stage absolute inset-0 flex items-center justify-center overflow-visible">
+                <svg
+                  className="hero-circuit hero-circuit-back"
+                  viewBox="0 0 560 360"
+                  aria-hidden="true"
+                >
+                  {heroCircuitDecorativeRuns.map((run) => (
+                    <g key={run.id} className="hero-circuit-decorative">
+                      <path
+                        className={`hero-circuit-path hero-circuit-path-${run.color} ${run.delayClass}`}
+                        pathLength="100"
+                        d={run.path}
+                      />
 
-              <div className="hero-logo-card">
-                <div className="hero-logo-glow" />
-                <img
-                  src={logo}
-                  alt={`${brand.name} logo`}
-                  className="hero-logo-mark"
-                />
+                      <circle
+                        cx={run.endX}
+                        cy={run.endY}
+                        r="5.5"
+                        className={`hero-circuit-terminal hero-circuit-path-${run.color} ${run.delayClass}`}
+                      />
+                    </g>
+                  ))}
+                  {heroCircuitBackRuns.map((run) => (
+                    <g key={run.id}>
+                      <path
+                        className={`hero-circuit-path hero-circuit-path-${run.color} ${run.delayClass}`}
+                        pathLength="100"
+                        d={run.path}
+                      />
+
+                      <circle
+                        cx={run.endX}
+                        cy={run.endY}
+                        r="6.5"
+                        className={`hero-circuit-terminal hero-circuit-path-${run.color} ${run.delayClass}`}
+                      />
+                    </g>
+                  ))}
+                </svg>
+
+                <div className="hero-logo-card">
+                  <div className="hero-logo-reactive-glow" />
+                  <img
+                    src={logo}
+                    alt={`${brand.name} logo`}
+                    className="hero-logo-mark"
+                  />
+                </div>
+
+                <svg
+                  className="hero-circuit hero-circuit-front"
+                  viewBox="0 0 560 360"
+                  aria-hidden="true"
+                >
+                  {heroCircuitFrontRuns.map((run) => (
+                    <g key={run.id}>
+                      <path
+                        className={`hero-circuit-path hero-circuit-path-${run.color} ${run.delayClass}`}
+                        pathLength="100"
+                        d={run.path}
+                      />
+
+                      <circle
+                        cx={run.endX}
+                        cy={run.endY}
+                        r="6.5"
+                        className={`hero-circuit-terminal hero-circuit-path-${run.color} ${run.delayClass}`}
+                      />
+                    </g>
+                  ))}
+                </svg>
               </div>
-
-              <HeroLogoParticlesCanvas layer="front" />
             </div>
-          </div>
         </div>
       </div>
     </section>

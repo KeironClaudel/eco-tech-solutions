@@ -7,242 +7,337 @@ type Point = {
   y: number;
 };
 
-type ParticleConfig = {
-  colorA: string;
-  colorB: string;
+type PathSegment = {
+  from: Point;
+  to: Point;
+  length: number;
+};
+
+type PathMetrics = {
+  segments: PathSegment[];
+  totalLength: number;
+};
+
+type TraceConfig = {
+  color: string;
+  glow: string;
   duration: number;
   delay: number;
   path: [number, number][];
 };
 
-type ParticlesMap = {
-  back: ParticleConfig[];
-  front: ParticleConfig[];
+type Props = {
+  layer?: LayerType;
 };
 
-const PARTICLES: ParticlesMap = {
+const TRACES: Record<LayerType, TraceConfig[]> = {
   back: [
     {
-      colorA: "85,243,255",
-      colorB: "168,85,247",
-      duration: 5200,
+      color: "85,243,255",
+      glow: "168,85,247",
+      duration: 4600,
       delay: 0,
       path: [
-        [-0.15, 0.85],
-        [0.25, 0.15],
-        [0.55, 0.95],
-        [1.15, 0.25],
+        [0.04, 0.2],
+        [0.24, 0.2],
+        [0.24, 0.38],
+        [0.36, 0.38],
       ],
     },
     {
-      colorA: "168,85,247",
-      colorB: "85,243,255",
-      duration: 6800,
-      delay: 1300,
+      color: "168,85,247",
+      glow: "85,243,255",
+      duration: 5200,
+      delay: 900,
       path: [
-        [0.05, 0.25],
-        [0.35, 0.95],
-        [0.65, 0.05],
-        [1.05, 0.75],
+        [0.92, 0.74],
+        [0.72, 0.74],
+        [0.72, 0.58],
+        [0.64, 0.58],
       ],
     },
   ],
   front: [
     {
-      colorA: "85,243,255",
-      colorB: "168,85,247",
-      duration: 5800,
-      delay: 800,
+      color: "85,243,255",
+      glow: "168,85,247",
+      duration: 4200,
+      delay: 500,
       path: [
-        [0.2, -0.05],
-        [0.55, 0.35],
-        [0.35, 0.85],
-        [0.95, 1.1],
+        [0.12, 0.82],
+        [0.3, 0.82],
+        [0.3, 0.66],
+        [0.37, 0.66],
       ],
     },
     {
-      colorA: "168,85,247",
-      colorB: "85,243,255",
-      duration: 7400,
-      delay: 2200,
+      color: "168,85,247",
+      glow: "85,243,255",
+      duration: 5000,
+      delay: 1400,
       path: [
-        [0.75, -0.1],
-        [0.85, 0.35],
-        [0.45, 0.65],
-        [0.65, 1.1],
+        [0.88, 0.28],
+        [0.7, 0.28],
+        [0.7, 0.42],
+        [0.63, 0.42],
       ],
     },
   ],
 };
 
-function cubicBezier(
-  t: number,
-  p0: Point,
-  p1: Point,
-  p2: Point,
-  p3: Point,
-): Point {
-  const u = 1 - t;
-  const tt = t * t;
-  const uu = u * u;
-  const uuu = uu * u;
-  const ttt = tt * t;
-
-  return {
-    x: uuu * p0.x + 3 * uu * t * p1.x + 3 * u * tt * p2.x + ttt * p3.x,
-    y: uuu * p0.y + 3 * uu * t * p1.y + 3 * u * tt * p2.y + ttt * p3.y,
-  };
-}
-
-function toPoint(
-  [x, y]: [number, number],
-  width: number,
-  height: number,
-): Point {
+function toPoint([x, y]: [number, number], width: number, height: number): Point {
   return {
     x: x * width,
     y: y * height,
   };
 }
 
-function easeInOut(t: number): number {
-  return t * t * (3 - 2 * t);
+function distance(a: Point, b: Point): number {
+  return Math.hypot(b.x - a.x, b.y - a.y);
 }
 
-type Props = {
-  layer?: LayerType;
-};
+function getPathMetrics(points: Point[]): PathMetrics {
+  const segments: PathSegment[] = [];
+  let totalLength = 0;
+
+  for (let index = 1; index < points.length; index++) {
+    const from = points[index - 1];
+    const to = points[index];
+    const length = distance(from, to);
+
+    totalLength += length;
+    segments.push({ from, to, length });
+  }
+
+  return { segments, totalLength };
+}
+
+function getPointAtProgress(points: Point[], progress: number): Point {
+  const { segments, totalLength } = getPathMetrics(points);
+  const targetLength = totalLength * progress;
+
+  let traveled = 0;
+
+  for (const segment of segments) {
+    if (traveled + segment.length >= targetLength) {
+      const localProgress = (targetLength - traveled) / segment.length;
+
+      return {
+        x: segment.from.x + (segment.to.x - segment.from.x) * localProgress,
+        y: segment.from.y + (segment.to.y - segment.from.y) * localProgress,
+      };
+    }
+
+    traveled += segment.length;
+  }
+
+  return points[points.length - 1];
+}
+
+function drawStaticCircuit(
+  ctx: CanvasRenderingContext2D,
+  points: Point[],
+  color: string,
+) {
+  ctx.beginPath();
+
+  points.forEach((point, index) => {
+    if (index === 0) {
+      ctx.moveTo(point.x, point.y);
+      return;
+    }
+
+    ctx.lineTo(point.x, point.y);
+  });
+
+  ctx.strokeStyle = `rgba(${color}, 0.16)`;
+  ctx.lineWidth = 1.25;
+  ctx.shadowBlur = 0;
+  ctx.stroke();
+
+  points.forEach((point) => {
+    ctx.beginPath();
+    ctx.arc(point.x, point.y, 3.5, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(${color}, 0.32)`;
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+  });
+}
+
+function drawActiveCircuit(
+  ctx: CanvasRenderingContext2D,
+  points: Point[],
+  progress: number,
+  color: string,
+  glow: string,
+) {
+  const { segments, totalLength } = getPathMetrics(points);
+  const targetLength = totalLength * progress;
+
+  let traveled = 0;
+
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, points[0].y);
+
+  for (const segment of segments) {
+    if (traveled + segment.length <= targetLength) {
+      ctx.lineTo(segment.to.x, segment.to.y);
+      traveled += segment.length;
+      continue;
+    }
+
+    const localProgress = (targetLength - traveled) / segment.length;
+
+    ctx.lineTo(
+      segment.from.x + (segment.to.x - segment.from.x) * localProgress,
+      segment.from.y + (segment.to.y - segment.from.y) * localProgress,
+    );
+
+    break;
+  }
+
+  ctx.strokeStyle = `rgba(${color}, 0.88)`;
+  ctx.lineWidth = 2.2;
+  ctx.shadowColor = `rgba(${glow}, 0.7)`;
+  ctx.shadowBlur = 14;
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+}
+
+function drawPulse(
+  ctx: CanvasRenderingContext2D,
+  point: Point,
+  progress: number,
+  color: string,
+  glow: string,
+) {
+  const radius = 4 + progress * 26;
+  const alpha = 1 - progress;
+
+  const gradient = ctx.createRadialGradient(
+    point.x,
+    point.y,
+    0,
+    point.x,
+    point.y,
+    radius,
+  );
+
+  gradient.addColorStop(0, `rgba(${color}, ${0.65 * alpha})`);
+  gradient.addColorStop(0.45, `rgba(${glow}, ${0.28 * alpha})`);
+  gradient.addColorStop(1, "rgba(0,0,0,0)");
+
+  ctx.fillStyle = gradient;
+  ctx.beginPath();
+  ctx.arc(point.x, point.y, radius, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function easeOutCubic(t: number): number {
+  return 1 - Math.pow(1 - t, 3);
+}
 
 function HeroLogoParticlesCanvas({ layer = "front" }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const rafRef = useRef<number | null>(null);
-  const historiesRef = useRef<Point[][]>([]);
 
-  useEffect(() => {
-    const canvas = canvasRef.current!;
+useEffect(() => {
+  const canvas = canvasRef.current;
 
-    const ctx = canvas.getContext("2d")!;
+  if (!canvas) {
+    return;
+  }
 
-    const particles = PARTICLES[layer] ?? PARTICLES.front;
+  const context = canvas.getContext("2d");
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reduceMotion.matches) return;
+  if (!context) {
+    return;
+  }
 
-    function resize() {
-      const rect = canvas.parentElement?.getBoundingClientRect();
-      if (!rect) return;
+  const canvasElement: HTMLCanvasElement = canvas;
+  const canvasContext: CanvasRenderingContext2D = context;
+  const traces = TRACES[layer];
 
-      const dpr = window.devicePixelRatio || 1;
+  function resize() {
+    const parent = canvasElement.parentElement;
 
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      canvas.style.width = `${rect.width}px`;
-      canvas.style.height = `${rect.height}px`;
-
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      historiesRef.current = particles.map(() => []);
+    if (!parent) {
+      return;
     }
 
-    function drawTrail(
-      history: Point[],
-      colorA: string,
-      colorB: string,
-    ) {
-      for (let i = 1; i < history.length; i++) {
-        const prev = history[i - 1];
-        const point = history[i];
-        const alpha = i / history.length;
+    const rect = parent.getBoundingClientRect();
+    const width = rect.width || 520;
+    const height = rect.height || 440;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-        ctx.beginPath();
-        ctx.moveTo(prev.x, prev.y);
-        ctx.lineTo(point.x, point.y);
-        ctx.strokeStyle = `rgba(${colorA}, ${alpha * 0.34})`;
-        ctx.lineWidth = 0.7 + alpha * 2.2;
-        ctx.shadowColor = `rgba(${colorB}, ${alpha * 0.4})`;
-        ctx.shadowBlur = 10;
-        ctx.stroke();
-      }
+    canvasElement.width = width * dpr;
+    canvasElement.height = height * dpr;
+    canvasElement.style.width = `${width}px`;
+    canvasElement.style.height = `${height}px`;
 
-      ctx.shadowBlur = 0;
-    }
+    canvasContext.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
 
-    function drawParticle(
-      point: Point,
-      colorA: string,
-      colorB: string,
-    ) {
-      const glow = ctx.createRadialGradient(
-        point.x,
-        point.y,
-        0,
-        point.x,
-        point.y,
-        28,
+  function animate(time: number) {
+    const width = canvasElement.clientWidth;
+    const height = canvasElement.clientHeight;
+
+    canvasContext.clearRect(0, 0, width, height);
+
+    traces.forEach((trace) => {
+      const points = trace.path.map((point) => toPoint(point, width, height));
+      const rawProgress =
+        ((time + trace.delay) % trace.duration) / trace.duration;
+
+      const progress = easeOutCubic(Math.min(rawProgress / 0.78, 1));
+      const endPoint = points[points.length - 1];
+      const currentPoint = getPointAtProgress(points, progress);
+
+      drawStaticCircuit(canvasContext, points, trace.color);
+      drawActiveCircuit(
+        canvasContext,
+        points,
+        progress,
+        trace.color,
+        trace.glow,
       );
 
-      glow.addColorStop(0, `rgba(${colorA}, 0.95)`);
-      glow.addColorStop(0.36, `rgba(${colorB}, 0.45)`);
-      glow.addColorStop(1, "rgba(0,0,0,0)");
+      canvasContext.beginPath();
+      canvasContext.arc(currentPoint.x, currentPoint.y, 4, 0, Math.PI * 2);
+      canvasContext.fillStyle = `rgba(${trace.color}, 0.95)`;
+      canvasContext.shadowColor = `rgba(${trace.glow}, 0.75)`;
+      canvasContext.shadowBlur = 14;
+      canvasContext.fill();
+      canvasContext.shadowBlur = 0;
 
-      ctx.fillStyle = glow;
-      ctx.beginPath();
-      ctx.arc(point.x, point.y, 28, 0, Math.PI * 2);
-      ctx.fill();
+      if (rawProgress > 0.78) {
+        const pulseProgress = (rawProgress - 0.78) / 0.22;
 
-      ctx.fillStyle = `rgba(${colorA}, 1)`;
-      ctx.beginPath();
-      ctx.arc(point.x, point.y, 5, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    function animate(time: number) {
-      const width = canvas.clientWidth;
-      const height = canvas.clientHeight;
-
-      ctx.clearRect(0, 0, width, height);
-
-      particles.forEach((particle, index) => {
-        const rawT =
-          ((time + particle.delay) % particle.duration) / particle.duration;
-
-        const t = easeInOut(rawT);
-
-        const [p0, p1, p2, p3] = particle.path.map((point) =>
-          toPoint(point, width, height),
+        drawPulse(
+          canvasContext,
+          endPoint,
+          pulseProgress,
+          trace.color,
+          trace.glow,
         );
+      }
+    });
 
-        const currentPoint = cubicBezier(t, p0, p1, p2, p3);
-
-        const history = historiesRef.current[index] ?? [];
-
-        if (rawT < 0.025) {
-          history.length = 0;
-        }
-
-        history.push(currentPoint);
-
-        if (history.length > 42) {
-          history.shift();
-        }
-
-        historiesRef.current[index] = history;
-
-        drawTrail(history, particle.colorA, particle.colorB);
-        drawParticle(currentPoint, particle.colorA, particle.colorB);
-      });
-
-      rafRef.current = requestAnimationFrame(animate);
-    }
-
-    resize();
     rafRef.current = requestAnimationFrame(animate);
-    window.addEventListener("resize", resize);
+  }
 
-    return () => {
-      window.removeEventListener("resize", resize);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, [layer]);
+  resize();
+  rafRef.current = requestAnimationFrame(animate);
+  window.addEventListener("resize", resize);
+
+  return () => {
+    window.removeEventListener("resize", resize);
+
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current);
+    }
+  };
+}, [layer]);
 
   return (
     <canvas
