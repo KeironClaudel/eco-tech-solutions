@@ -218,6 +218,22 @@ select {
   position: relative;
 }
 
+.hero-logo-stage-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-logo-stage-mobile .hero-logo-card {
+  height: 220px;
+  width: 320px;
+}
+
+.hero-logo-stage-mobile .hero-logo-mark {
+  width: 290px;
+}
+
 .hero-logo-card {
   position: relative;
   z-index: 3;

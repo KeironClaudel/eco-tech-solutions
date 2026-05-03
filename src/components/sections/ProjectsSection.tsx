@@ -55,7 +55,7 @@ function ProjectsSection() {
                 </p>
 
                 <div className="mt-5 rounded-2xl border border-dashed border-white/10 bg-[#0b0f17] px-4 py-3 text-sm text-slate-400">
-                  Fotos reales pronto.
+                  En proceso de construcción.
                 </div>
               </div>
             </article>

@@ -87,8 +87,9 @@ function ContactSection() {
                   id="phone"
                   name="phone"
                   type="tel"
+                  inputMode="tel"
                   required
-                  placeholder="+506 0000-0000"
+                  placeholder="Tu número"
                   className="w-full rounded-xl border border-white/10 bg-[#0b0f17] px-4 py-2.5 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/50"
                 />
               </div>
@@ -162,9 +163,10 @@ function ContactSection() {
               <iframe
                 title="Mapa de cobertura en Costa Rica"
                 src="https://www.openstreetmap.org/export/embed.html?bbox=-86.08%2C8.01%2C-82.45%2C11.40&layer=mapnik"
-                className="h-full w-full border-0"
+                className="pointer-events-none h-full w-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                tabIndex={-1}
               />
             </div>
           </div>

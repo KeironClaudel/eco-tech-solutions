@@ -103,12 +103,94 @@ const heroCircuitDecorativeRuns: HeroCircuitRun[] = [
   },
 ];
 
+type HeroLogoArtworkProps = {
+  className?: string;
+};
+
+function HeroLogoArtwork({ className = "" }: HeroLogoArtworkProps) {
+  return (
+    <div className={`hero-logo-stage ${className}`.trim()}>
+      <svg
+        className="hero-circuit hero-circuit-back"
+        viewBox="0 0 560 360"
+        aria-hidden="true"
+      >
+        {heroCircuitDecorativeRuns.map((run) => (
+          <g key={run.id} className="hero-circuit-decorative">
+            <path
+              className={`hero-circuit-path hero-circuit-path-${run.color} ${run.delayClass}`}
+              pathLength="100"
+              d={run.path}
+            />
+
+            <circle
+              cx={run.endX}
+              cy={run.endY}
+              r="5.5"
+              className={`hero-circuit-terminal hero-circuit-path-${run.color} ${run.delayClass}`}
+            />
+          </g>
+        ))}
+
+        {heroCircuitBackRuns.map((run) => (
+          <g key={run.id}>
+            <path
+              className={`hero-circuit-path hero-circuit-path-${run.color} ${run.delayClass}`}
+              pathLength="100"
+              d={run.path}
+            />
+
+            <circle
+              cx={run.endX}
+              cy={run.endY}
+              r="6.5"
+              className={`hero-circuit-terminal hero-circuit-path-${run.color} ${run.delayClass}`}
+            />
+          </g>
+        ))}
+      </svg>
+
+      <div className="hero-logo-card">
+        <div className="hero-logo-reactive-glow" />
+        <img src={logo} alt={`${brand.name} logo`} className="hero-logo-mark" />
+      </div>
+
+      <svg
+        className="hero-circuit hero-circuit-front"
+        viewBox="0 0 560 360"
+        aria-hidden="true"
+      >
+        {heroCircuitFrontRuns.map((run) => (
+          <g key={run.id}>
+            <path
+              className={`hero-circuit-path hero-circuit-path-${run.color} ${run.delayClass}`}
+              pathLength="100"
+              d={run.path}
+            />
+
+            <circle
+              cx={run.endX}
+              cy={run.endY}
+              r="6.5"
+              className={`hero-circuit-terminal hero-circuit-path-${run.color} ${run.delayClass}`}
+            />
+          </g>
+        ))}
+      </svg>
+    </div>
+  );
+}
+
 function HeroSection() {
   return (
     <section className="px-6 py-24 text-slate-50">
       <div className="mx-auto max-w-[1680px]">
         <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.92fr)] lg:gap-16">
           <div className="max-w-4xl animate-fade-up">
+            <div className="mb-8 lg:hidden">
+              <HeroLogoArtwork className="hero-logo-stage-mobile mx-auto h-[220px] max-w-[340px] animate-fade-in" />
+            </div>
+
             <p className="mb-5 inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm font-medium text-cyan-200">
               {brand.yearsExperience} en ingeniería, seguridad y tecnología
             </p>
@@ -161,78 +243,7 @@ function HeroSection() {
           </div>
 
             <div className="relative hidden min-h-[440px] animate-fade-up animation-delay-200 lg:block">
-              <div className="hero-logo-stage absolute inset-0 flex items-center justify-center overflow-visible">
-                <svg
-                  className="hero-circuit hero-circuit-back"
-                  viewBox="0 0 560 360"
-                  aria-hidden="true"
-                >
-                  {heroCircuitDecorativeRuns.map((run) => (
-                    <g key={run.id} className="hero-circuit-decorative">
-                      <path
-                        className={`hero-circuit-path hero-circuit-path-${run.color} ${run.delayClass}`}
-                        pathLength="100"
-                        d={run.path}
-                      />
-
-                      <circle
-                        cx={run.endX}
-                        cy={run.endY}
-                        r="5.5"
-                        className={`hero-circuit-terminal hero-circuit-path-${run.color} ${run.delayClass}`}
-                      />
-                    </g>
-                  ))}
-                  {heroCircuitBackRuns.map((run) => (
-                    <g key={run.id}>
-                      <path
-                        className={`hero-circuit-path hero-circuit-path-${run.color} ${run.delayClass}`}
-                        pathLength="100"
-                        d={run.path}
-                      />
-
-                      <circle
-                        cx={run.endX}
-                        cy={run.endY}
-                        r="6.5"
-                        className={`hero-circuit-terminal hero-circuit-path-${run.color} ${run.delayClass}`}
-                      />
-                    </g>
-                  ))}
-                </svg>
-
-                <div className="hero-logo-card">
-                  <div className="hero-logo-reactive-glow" />
-                  <img
-                    src={logo}
-                    alt={`${brand.name} logo`}
-                    className="hero-logo-mark"
-                  />
-                </div>
-
-                <svg
-                  className="hero-circuit hero-circuit-front"
-                  viewBox="0 0 560 360"
-                  aria-hidden="true"
-                >
-                  {heroCircuitFrontRuns.map((run) => (
-                    <g key={run.id}>
-                      <path
-                        className={`hero-circuit-path hero-circuit-path-${run.color} ${run.delayClass}`}
-                        pathLength="100"
-                        d={run.path}
-                      />
-
-                      <circle
-                        cx={run.endX}
-                        cy={run.endY}
-                        r="6.5"
-                        className={`hero-circuit-terminal hero-circuit-path-${run.color} ${run.delayClass}`}
-                      />
-                    </g>
-                  ))}
-                </svg>
-              </div>
+              <HeroLogoArtwork className="absolute inset-0 flex items-center justify-center overflow-visible" />
             </div>
         </div>
       </div>
