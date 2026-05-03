@@ -430,22 +430,6 @@ select {
     );
 }
 
-.service-section-backdrop {
-  pointer-events: none;
-}
-
-.service-section-backdrop-glow {
-  
-  border-radius: 999px !important; 
-  background:
-    radial-gradient(circle at 18% 50%, rgba(85, 243, 255, 0.14), transparent 18%),
-    radial-gradient(circle at 46% 50%, rgba(168, 85, 247, 0.16), transparent 28%),
-    radial-gradient(circle at 74% 48%, rgba(148, 163, 184, 0.08), transparent 20%),
-    radial-gradient(circle at 84% 50%, rgba(8, 13, 22, 0.92), transparent 34%) !important;
-  filter: blur(40px) !important;
-  opacity: 1 !important;
-}
-
 .service-wheel-background {
   opacity: 0.42;
   filter: saturate(0.78);

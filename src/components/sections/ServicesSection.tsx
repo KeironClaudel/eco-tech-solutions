@@ -23,7 +23,7 @@ const wheelPillDisplayOrder = [2, 3, 4, 5, 0, 1];
 function ServicesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const [autoplayEnabled, setAutoplayEnabled] = useState(true);
+  const [autoplayEnabled, setAutoplayEnabled] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -74,13 +74,6 @@ function ServicesSection() {
       id="services"
       className="relative overflow-hidden px-6 py-28 text-slate-50 xl:px-10"
     >
-      <div
-        className="service-section-backdrop absolute inset-y-0 right-[-14vw] hidden w-[62vw] min-w-[1100px] lg:block"
-        aria-hidden="true"
-      >
-        <div className="service-section-backdrop-glow absolute inset-y-[2%] inset-x-0" />
-      </div>
-
       <div className="mx-auto max-w-[1680px]">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(980px,1.34fr)_minmax(420px,0.66fr)] xl:gap-14">
           <div className="animate-fade-up max-w-[1180px]">
