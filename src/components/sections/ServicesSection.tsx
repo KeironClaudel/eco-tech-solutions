@@ -82,11 +82,11 @@ function ServicesSection() {
           </p>
 
           <h2 className="max-w-[22ch] text-3xl font-bold tracking-tight sm:max-w-[24ch] md:max-w-[26ch] md:text-[3.35rem] md:leading-[1.02]">
-            Soluciones especializadas para cada necesidad tecnica.
+            Soluciones especializadas para cada necesidad técnica.
           </h2>
 
           <p className="mt-5 max-w-[560px] text-lg leading-8 text-slate-300">
-            Seleccione un servicio para revisar su alcance tecnico y las
+            Seleccione un servicio para revisar su alcance técnico y las
             soluciones que ofrecemos.
           </p>
 
@@ -158,7 +158,7 @@ function ServicesSection() {
                 </p>
 
                 <div className="mt-4">
-                  <h3 className="max-w-[12ch] text-[clamp(2.25rem,8vw,4rem)] font-bold leading-[0.95] tracking-tight text-white sm:max-w-[10ch]">
+                  <h3 className="max-w-[12ch] text-[clamp(2.25rem,8vw,3.5rem)] font-bold leading-[0.95] tracking-tight text-white sm:max-w-[10ch]">
                     {activeService.title}
                   </h3>
 
@@ -219,7 +219,7 @@ function ServicesSection() {
                 href="#contact"
                 className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-5 py-2 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/40 hover:bg-cyan-300/15"
               >
-                Mas informacion
+                Más información
               </a>
             </div>
 
@@ -255,7 +255,7 @@ function ServicesSection() {
                 </div>
 
                 <p className={`mt-5 text-[0.72rem] font-bold uppercase tracking-[0.24em] ${activeAccent}`}>
-                  Categoria activa
+                  Categoría activa
                 </p>
 
                 <h4 className="mt-3 max-w-[10ch] text-[3rem] font-bold leading-[0.94] tracking-tight text-white">

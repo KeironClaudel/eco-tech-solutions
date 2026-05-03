@@ -51,7 +51,7 @@ function ContactSection() {
               >
                 <Mail className="text-cyan-300" size={24} />
                 <div>
-                  <p className="font-semibold text-white">Email</p>
+                  <p className="font-semibold text-white">Correo electrónico</p>
                   <p className="text-sm text-slate-300">{brand.email}</p>
                 </div>
               </a>
