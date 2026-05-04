@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
 import AboutSection from "./components/sections/AboutSection";
@@ -29,6 +30,7 @@ function App() {
 
       <Footer />
       <FloatingWhatsAppButton />
+      <Analytics />
     </>
   );
 }
