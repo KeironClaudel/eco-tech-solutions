@@ -1,4 +1,4 @@
-import { BadgeCheck, Clock3, MapPin } from "lucide-react";
+import { Clock3, MapPin } from "lucide-react";
 import logo from "../../assets/images/logo/ecotech-logo.png";
 import { brand } from "../../data/brand";
 import { buildWhatsAppUrl } from "../../lib/whatsapp";
@@ -239,10 +239,6 @@ function HeroSection() {
                 {brand.coverage}
               </span>
 
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-slate-200">
-                <BadgeCheck size={16} className="text-cyan-300" />
-                Respuesta directa por WhatsApp
-              </span>
             </div>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">

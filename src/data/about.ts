@@ -12,12 +12,12 @@ export const aboutFeatures = [
     icon: MessageCircle,
   },
   {
-    title: "Cobertura clara",
+    title: "Cobertura total",
     description: "Atención en todo el país.",
     icon: MapPin,
   },
   {
-    title: "Servicio profesional y formal",
+    title: "Servicio profesional y certificado",
     description: "Orden y respaldo técnico.",
     icon: ShieldCheck,
   },

@@ -1,23 +1,20 @@
 import { CheckCircle2, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { useEffect, useState } from "react";
-import { serviceCategories } from "../../data/services";
+import {
+  type ServiceFeature,
+  serviceCategories,
+} from "../../data/services";
 import logo from "../../assets/images/logo/ecotech-logo.png";
 import { buildWhatsAppUrl } from "../../lib/whatsapp";
 
-const wheelPillOrbitCenterX = 930;
-const wheelPillOrbitCenterY = 352;
-const wheelPillOrbitRadiusX = 400;
-const wheelPillOrbitRadiusY = 360;
-const wheelPillAngles = [134, 150, 168, 186, 202, 222, 238];
-const wheelPillSlotAdjustments = [
-  { x: 0, y: -14 },
-  { x: 0, y: 0 },
-  { x: 0, y: 0 },
-  { x: 0, y: 0 },
-  { x: -18, y: 18 },
-  { x: -8, y: 8 },
-  { x: 28, y: 34 },
-];
+const wheelPillOrbitCenterX = 912;
+const wheelPillOrbitCenterY = 390;
+const wheelPillOrbitRadius = 380;
+const wheelPillVerticalGap = 90;
+
+function getFeatureTitle(feature: ServiceFeature) {
+  return typeof feature === "string" ? feature : feature.title;
+}
 
 function ServicesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -51,6 +48,9 @@ function ServicesSection() {
   const activeAccent = activeService.accentClass ?? "text-cyan-300";
   const activeIconColor = activeService.iconColorClass ?? "text-cyan-300";
   const ActiveIcon = activeService.icon;
+  const wheelPillStartY =
+    wheelPillOrbitCenterY -
+    (wheelPillVerticalGap * (serviceCategories.length - 1)) / 2;
 
   const handleSelectService = (index: number) => {
     setActiveIndex(index);
@@ -82,12 +82,11 @@ function ServicesSection() {
           </p>
 
           <h2 className="max-w-[22ch] text-3xl font-bold tracking-tight sm:max-w-[24ch] md:max-w-[26ch] md:text-[3.35rem] md:leading-[1.02]">
-            Soluciones especializadas para cada necesidad técnica.
+            Soluciones especializadas para cada necesidad.
           </h2>
 
           <p className="mt-5 max-w-[560px] text-lg leading-8 text-slate-300">
-            Seleccione un servicio para revisar su alcance técnico y las
-            soluciones que ofrecemos.
+            Soluciones que ofrecemos.
           </p>
 
           <div className="mt-10 lg:hidden">
@@ -107,22 +106,61 @@ function ServicesSection() {
 
                 <div className="mt-5 grid gap-3">
                   {serviceCategories.map((service, index) => (
-                    <button
-                      key={`${service.title}-mobile-list`}
-                      type="button"
-                      onClick={() => handleSelectService(index)}
-                      aria-pressed={index === activeIndex}
-                      className={`flex items-center gap-4 rounded-[18px] border px-4 py-4 text-left transition ${
-                        index === activeIndex
-                          ? "border-cyan-300/40 bg-cyan-300/10 shadow-[0_0_24px_rgba(85,243,255,0.12)]"
-                          : "border-white/10 bg-[#0b0f17] hover:border-cyan-300/20 hover:bg-white/5"
-                      }`}
-                    >
-                      <span className="size-2.5 shrink-0 rounded-full bg-cyan-300" />
-                      <span className="text-base font-medium text-white">
-                        {service.title}
-                      </span>
-                    </button>
+                    <div key={`${service.title}-mobile-list`} className="space-y-3">
+                      <button
+                        type="button"
+                        onClick={() => handleSelectService(index)}
+                        aria-pressed={index === activeIndex}
+                        className={`flex w-full items-center gap-4 rounded-[18px] border px-4 py-4 text-left transition ${
+                          index === activeIndex
+                            ? "border-cyan-300/40 bg-cyan-300/10 shadow-[0_0_24px_rgba(85,243,255,0.12)]"
+                            : "border-white/10 bg-[#0b0f17] hover:border-cyan-300/20 hover:bg-white/5"
+                        }`}
+                      >
+                        <span className="size-2.5 shrink-0 rounded-full bg-cyan-300" />
+                        <span className="text-base font-medium text-white">
+                          {service.title}
+                        </span>
+                      </button>
+
+                      {index === activeIndex ? (
+                        <div className="rounded-[22px] border border-white/10 bg-[#0b0f17]/80 px-4 py-4">
+                          <div className="space-y-3">
+                            {activeService.services.map((feature) => (
+                              <div
+                                key={`${activeService.title}-${getFeatureTitle(feature)}-mobile`}
+                                className="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3"
+                              >
+                                <div className="flex items-start gap-3 text-sm text-slate-200">
+                                  <CheckCircle2
+                                    size={16}
+                                    className={`mt-0.5 shrink-0 ${activeAccent}`}
+                                  />
+                                  <span>{getFeatureTitle(feature)}</span>
+                                </div>
+
+                                {typeof feature !== "string" && feature.details?.length ? (
+                                  <div className="mt-3 space-y-2">
+                                    {feature.details.map((detail) => (
+                                      <div
+                                        key={`${getFeatureTitle(feature)}-${detail}-mobile`}
+                                        className="flex items-start gap-3 text-sm text-slate-300"
+                                      >
+                                        <CheckCircle2
+                                          size={15}
+                                          className={`mt-0.5 shrink-0 ${activeAccent}`}
+                                        />
+                                        <span>{detail}</span>
+                                      </div>
+                                    ))}
+                                  </div>
+                                ) : null}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
                   ))}
                 </div>
 
@@ -169,18 +207,37 @@ function ServicesSection() {
               </div>
 
               <div className="grid min-h-[280px] auto-rows-fr gap-3 sm:grid-cols-2">
-                {activeService.services.slice(0, 4).map((service) => (
+                {activeService.services.map((feature) => (
                   <div
-                    key={service}
+                    key={getFeatureTitle(feature)}
                     className="flex min-h-[96px] items-start gap-3 rounded-[18px] border border-slate-400/15 bg-slate-900/70 px-4 py-4 text-sm text-slate-200 transition duration-300 hover:-translate-y-0.5 hover:border-cyan-300/40"
                   >
                     <CheckCircle2
                       size={16}
                       className={`mt-0.5 shrink-0 ${activeAccent}`}
                     />
-                    <span className="min-w-0 text-sm leading-5 text-balance">
-                      {service}
-                    </span>
+                    <div className="min-w-0">
+                      <p className="text-sm leading-5 text-balance text-slate-100">
+                        {getFeatureTitle(feature)}
+                      </p>
+
+                      {typeof feature !== "string" && feature.details?.length ? (
+                        <div className="-ml-7 mt-3 space-y-2">
+                          {feature.details.map((detail) => (
+                            <div
+                              key={`${getFeatureTitle(feature)}-${detail}`}
+                              className="flex items-start gap-3 pl-0 text-sm text-slate-300"
+                            >
+                              <CheckCircle2
+                                size={15}
+                                className={`mt-0.5 shrink-0 ${activeAccent}`}
+                              />
+                              <span>{detail}</span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -274,28 +331,29 @@ function ServicesSection() {
               {serviceCategories.map((service, index) => {
                 const Icon = service.icon;
                 const isActive = index === activeIndex;
-                const angle = wheelPillAngles[index] ?? wheelPillAngles[0];
-                const slotAdjustment =
-                  wheelPillSlotAdjustments[index] ?? wheelPillSlotAdjustments[0];
-                const radians = (angle * Math.PI) / 180;
-                const pillX =
-                  wheelPillOrbitCenterX + Math.cos(radians) * wheelPillOrbitRadiusX;
-                const pillY =
-                  wheelPillOrbitCenterY - Math.sin(radians) * wheelPillOrbitRadiusY;
+                const pillY = wheelPillStartY + index * wheelPillVerticalGap;
+                const deltaY = pillY - wheelPillOrbitCenterY;
+                const horizontalOffset = Math.sqrt(
+                  Math.max(
+                    0,
+                    wheelPillOrbitRadius * wheelPillOrbitRadius - deltaY * deltaY,
+                  ),
+                );
+                const pillX = wheelPillOrbitCenterX - horizontalOffset;
 
                 return (
                   <button
                     key={service.title}
                     type="button"
                     onClick={() => handleSelectService(index)}
-                    className={`service-wheel-pill pointer-events-auto absolute z-20 flex min-h-[78px] w-[212px] items-center gap-4 rounded-full border px-4 py-3 text-left transition-[border-color,background-color,box-shadow,transform,opacity,left,top] duration-300 ${
+                    className={`service-wheel-pill pointer-events-auto absolute z-20 flex min-h-[78px] w-[226px] items-center gap-4 rounded-full border px-4 py-3 text-left transition-[border-color,background-color,box-shadow,transform,opacity,left,top] duration-300 ${
                       isActive
                         ? "service-wheel-pill-active"
                         : "service-wheel-pill-idle"
                     }`}
                     style={{
-                      left: `${pillX + slotAdjustment.x}px`,
-                      top: `${pillY + slotAdjustment.y}px`,
+                      left: `${pillX}px`,
+                      top: `${pillY}px`,
                       transform: `translate(-50%, -50%) scale(${isActive ? 1 : 0.88})`,
                       opacity: isActive ? 1 : 0.42,
                       zIndex: isActive ? 30 : 20 - index,
@@ -312,7 +370,7 @@ function ServicesSection() {
                       <Icon size={24} />
                       </div>
 
-                      <span className="block max-w-[110px] text-sm font-semibold leading-[1.2] text-white">
+                      <span className="block max-w-[138px] text-sm font-semibold leading-[1.2] text-white">
                         {service.title}
                       </span>
                     </button>

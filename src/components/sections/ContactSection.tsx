@@ -1,4 +1,4 @@
-import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { brand } from "../../data/brand";
 import { buildWhatsAppUrl, openWhatsApp } from "../../lib/whatsapp";
 
@@ -15,10 +15,6 @@ function ContactSection() {
             <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
               Solicite una visita técnica o una cotización.
             </h2>
-
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
-              Escríbanos y coordinamos.
-            </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <a
@@ -63,6 +59,19 @@ function ContactSection() {
                   <p className="text-sm text-slate-300">{brand.coverage}</p>
                   <p className="text-xs text-slate-500">
                     Base operativa en {brand.location}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:col-span-2">
+                <Clock className="text-cyan-300" size={24} />
+                <div>
+                  <p className="font-semibold text-white">Horario de atención</p>
+                  <p className="text-sm text-slate-300">
+                    Lunes a viernes de 8:00 AM a 5:00 PM
+                  </p>
+                  <p className="text-sm text-slate-300">
+                    Sábados de 8:00 AM a 12:00 MD
                   </p>
                 </div>
               </div>

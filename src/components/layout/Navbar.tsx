@@ -2,7 +2,6 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { brand } from "../../data/brand";
 import { navigationItems } from "../../data/navigation";
-import { buildWhatsAppUrl } from "../../lib/whatsapp";
 import logo from "../../assets/images/logo/ecotech-logo.png";
 
 function Navbar() {
@@ -48,15 +47,6 @@ function Navbar() {
           ))}
         </nav>
 
-        <a
-          href={buildWhatsAppUrl(
-            "Hola, quisiera solicitar una cotización de servicios.",
-          )}
-          className="hidden rounded-lg bg-gradient-to-r from-cyan-400 to-purple-500 px-4 py-2 text-sm font-medium text-black transition hover:opacity-90 md:inline-flex"
-        >
-          Contacto
-        </a>
-
         <button
           type="button"
           aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
@@ -82,15 +72,6 @@ function Navbar() {
               </a>
             ))}
 
-            <a
-              href={buildWhatsAppUrl(
-                "Hola, quisiera solicitar una cotización de servicios.",
-              )}
-              onClick={closeMenu}
-              className="mt-2 rounded-xl bg-gradient-to-r from-cyan-400 to-purple-500 px-4 py-3 text-center font-semibold text-black transition hover:opacity-90"
-            >
-              Contacto
-            </a>
           </nav>
         </div>
       )}

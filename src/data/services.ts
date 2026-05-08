@@ -1,5 +1,6 @@
 import {
   ClipboardCheck,
+  Code2,
   Flame,
   Network,
   Settings2,
@@ -8,8 +9,25 @@ import {
   Wrench,
   Zap,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-export const serviceCategories = [
+export type ServiceFeature =
+  | string
+  | {
+      title: string;
+      details?: string[];
+    };
+
+export type ServiceCategory = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  accentClass?: string;
+  iconColorClass?: string;
+  services: ServiceFeature[];
+};
+
+export const serviceCategories: ServiceCategory[] = [
   {
     title: "Seguridad electrónica",
     description: "Protección y monitoreo.",
@@ -20,11 +38,10 @@ export const serviceCategories = [
       "Cámaras de seguridad CCTV",
       "Alarmas de seguridad",
       "Cercas eléctricas",
-      "Monitoreo y respaldo técnico",
     ],
   },
   {
-    title: "Alarma contra incendio",
+    title: "Alarmas contra incendio",
     description: "Detección y protección.",
     icon: Flame,
     accentClass: "text-rose-300",
@@ -33,7 +50,7 @@ export const serviceCategories = [
       "Sistemas de detección de humo",
       "Alarmas sonoras y visuales",
       "Integración de paneles y sensores",
-      "Inspección y mantenimiento preventivo",
+      "Inspección, mantenimiento y reparación",
     ],
   },
   {
@@ -46,20 +63,19 @@ export const serviceCategories = [
       "Cableado estructurado",
       "Infraestructura de red y telefonía",
       "Racks, tuberías y puntos de red",
-      "Organización de cuartos técnicos",
+      "Organización de centros de datos",
     ],
   },
   {
-    title: "Aires acondicionados",
+    title: "Climatización",
     description: "Instalación y mantenimiento.",
     icon: Snowflake,
     accentClass: "text-blue-300",
     iconColorClass: "text-blue-300",
     services: [
       "Instalación de aire acondicionado",
-      "Mantenimiento preventivo",
       "Inspección técnica",
-      "Limpieza y reparación",
+      "Mantenimiento preventivo, limpieza y reparación",
     ],
   },
   {
@@ -69,13 +85,30 @@ export const serviceCategories = [
     accentClass: "text-amber-300",
     iconColorClass: "text-amber-300",
     services: [
-      "Inspecciones eléctricas",
-      "Instalaciones residenciales y comerciales",
-      "Mantenimiento preventivo",
+      {
+        title: "Inspecciones eléctricas",
+        details: ["Certificaciones", "Solicitudes", "Otros trámites"],
+      },
+      {
+        title: "Instalaciones residenciales y comerciales",
+        details: ["Mantenimiento preventivo"],
+      },
       "Planos eléctricos",
-      "Solicitudes de medidor y acometida",
-      "Certificaciones eléctricas",
-      "Revisiones y diagnósticos eléctricos",
+    ],
+  },
+  {
+    title: "Soporte de TI",
+    description: "Soporte y prevención.",
+    icon: Wrench,
+    accentClass: "text-emerald-300",
+    iconColorClass: "text-emerald-300",
+    services: [
+      "Mantenimiento y reparación de equipo de informática",
+      {
+        title: "Revisiones preventivas",
+        details: ["Visitas técnicas programadas", "Diagnóstico de fallas"],
+      },
+      "Soporte para instalaciones y mejoras",
     ],
   },
   {
@@ -92,16 +125,16 @@ export const serviceCategories = [
     ],
   },
   {
-    title: "Mantenimiento empresarial",
-    description: "Soporte y prevención.",
-    icon: Wrench,
-    accentClass: "text-emerald-300",
-    iconColorClass: "text-emerald-300",
+    title: "Desarrollo de software",
+    description: "Soluciones digitales a medida.",
+    icon: Code2,
+    accentClass: "text-violet-300",
+    iconColorClass: "text-violet-300",
     services: [
-      "Visitas técnicas programadas",
-      "Revisiones preventivas",
-      "Diagnóstico de fallas",
-      "Soporte para instalaciones y mejoras",
+      "Desarrollo web",
+      "Desarrollo de aplicaciones",
+      "Automatización de procesos",
+      "Integraciones a medida",
     ],
   },
 ];
@@ -112,7 +145,7 @@ export const serviceHighlights = [
     icon: Shield,
   },
   {
-    label: "Alarma contra incendio",
+    label: "Alarmas contra incendio",
     icon: Flame,
   },
   {
@@ -120,7 +153,7 @@ export const serviceHighlights = [
     icon: Network,
   },
   {
-    label: "Aires acondicionados",
+    label: "Climatización",
     icon: Snowflake,
   },
   {
@@ -128,11 +161,15 @@ export const serviceHighlights = [
     icon: Zap,
   },
   {
+    label: "Soporte de TI",
+    icon: ClipboardCheck,
+  },
+  {
     label: "Ingeniería electromecánica",
     icon: Settings2,
   },
   {
-    label: "Mantenimiento empresarial",
-    icon: ClipboardCheck,
+    label: "Desarrollo de software",
+    icon: Code2,
   },
 ];
