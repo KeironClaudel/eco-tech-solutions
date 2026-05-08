@@ -42,6 +42,7 @@ function FloatingWhatsAppButton() {
 
   const handlePointerDown = (event: PointerEvent<HTMLAnchorElement>) => {
     const currentPosition = getCurrentPosition();
+    setPosition(currentPosition);
 
     dragState.current = {
       pointerId: event.pointerId,
@@ -88,12 +89,27 @@ function FloatingWhatsAppButton() {
     }
   };
 
+  const handlePointerCancel = (event: PointerEvent<HTMLAnchorElement>) => {
+    const currentDrag = dragState.current;
+
+    if (!currentDrag || currentDrag.pointerId !== event.pointerId) return;
+
+    suppressClick.current = false;
+    dragState.current = null;
+
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
+
   return (
     <a
       href={buildWhatsAppUrl(
         "Hola, quisiera solicitar información sobre los servicios de EcotechCR.",
       )}
       aria-label="Contactar por WhatsApp"
+      draggable={false}
+      onDragStart={(event) => event.preventDefault()}
       onClick={(event) => {
         if (!suppressClick.current) return;
 
@@ -103,6 +119,7 @@ function FloatingWhatsAppButton() {
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerCancel}
       className={`fixed z-50 flex size-14 touch-none select-none items-center justify-center rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 text-black shadow-2xl shadow-cyan-950/50 transition hover:scale-105 hover:opacity-90 ${
         position ? "" : "right-5 bottom-5"
       }`}
