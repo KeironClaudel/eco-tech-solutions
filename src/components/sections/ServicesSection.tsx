@@ -123,43 +123,68 @@ function ServicesSection() {
                         </span>
                       </button>
 
-                      {index === activeIndex ? (
-                        <div className="rounded-[22px] border border-white/10 bg-[#0b0f17]/80 px-4 py-4">
-                          <div className="space-y-3">
-                            {activeService.services.map((feature) => (
-                              <div
-                                key={`${activeService.title}-${getFeatureTitle(feature)}-mobile`}
-                                className="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3"
-                              >
-                                <div className="flex items-start gap-3 text-sm text-slate-200">
-                                  <CheckCircle2
-                                    size={16}
-                                    className={`mt-0.5 shrink-0 ${activeAccent}`}
-                                  />
-                                  <span>{getFeatureTitle(feature)}</span>
-                                </div>
-
-                                {typeof feature !== "string" && feature.details?.length ? (
-                                  <div className="mt-3 space-y-2">
-                                    {feature.details.map((detail) => (
-                                      <div
-                                        key={`${getFeatureTitle(feature)}-${detail}-mobile`}
-                                        className="flex items-start gap-3 text-sm text-slate-300"
-                                      >
-                                        <CheckCircle2
-                                          size={15}
-                                          className={`mt-0.5 shrink-0 ${activeAccent}`}
-                                        />
-                                        <span>{detail}</span>
-                                      </div>
-                                    ))}
+                      <div
+                        className={`grid transition-[grid-template-rows,opacity,margin] duration-500 ease-out ${
+                          index === activeIndex
+                            ? "mt-3 grid-rows-[1fr] opacity-100"
+                            : "mt-0 grid-rows-[0fr] opacity-0"
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <div
+                            className={`rounded-[22px] border border-white/10 bg-[#0b0f17]/80 px-4 py-4 transition-all duration-500 ease-out ${
+                              index === activeIndex
+                                ? "translate-y-0"
+                                : "-translate-y-2"
+                            }`}
+                          >
+                            <div className="space-y-3">
+                              {service.services.map((feature, featureIndex) => (
+                                <div
+                                  key={`${service.title}-${getFeatureTitle(feature)}-mobile`}
+                                  className="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3 transition-all duration-500 ease-out"
+                                  style={{
+                                    opacity: index === activeIndex ? 1 : 0,
+                                    transform:
+                                      index === activeIndex
+                                        ? "translateY(0px)"
+                                        : "translateY(-10px)",
+                                    transitionDelay:
+                                      index === activeIndex
+                                        ? `${120 + featureIndex * 70}ms`
+                                        : "0ms",
+                                  }}
+                                >
+                                  <div className="flex items-start gap-3 text-sm text-slate-200">
+                                    <CheckCircle2
+                                      size={16}
+                                      className={`mt-0.5 shrink-0 ${activeAccent}`}
+                                    />
+                                    <span>{getFeatureTitle(feature)}</span>
                                   </div>
-                                ) : null}
-                              </div>
-                            ))}
+
+                                  {typeof feature !== "string" && feature.details?.length ? (
+                                    <div className="mt-3 space-y-2">
+                                      {feature.details.map((detail) => (
+                                        <div
+                                          key={`${getFeatureTitle(feature)}-${detail}-mobile`}
+                                          className="flex items-start gap-3 text-sm text-slate-300"
+                                        >
+                                          <CheckCircle2
+                                            size={15}
+                                            className={`mt-0.5 shrink-0 ${activeAccent}`}
+                                          />
+                                          <span>{detail}</span>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  ) : null}
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         </div>
-                      ) : null}
+                      </div>
                     </div>
                   ))}
                 </div>
